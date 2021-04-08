@@ -5,20 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/gameday/style.css" />
     <title><%= title %></title>
   </head>
   <body>
     <!-- <form action="/getGames">
       <input type="submit" value="Submit" />
     </form> -->
-    <h1>Baseball Pitch Guesser</h1>
-    <h3>Today's Schedule</h3>
-
-    <ul class="gamesList">
-      <% for(i = 0; i < info.length; i++) { %>
-      <li class="game"><a href="<%=  %>"><%= info[i] %></a></li>
-      <% } %>
-    </ul>
+    <h3><%= venue %></h3>
 
     <script src="js/main.js"></script>
   </body>
