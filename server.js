@@ -17,9 +17,7 @@ app.use(express.json());
 const API_KEY = process.env.API_KEY;
 const API_ENDPOINT = `https://api.sportradar.us/mlb/trial/v7/en/games/2021/${date.day}/${date.month}/schedule.json?api_key=${API_KEY}`;
 let gameLinks, gameData;
-// console.log(date);
 getDummyGameLinks(dummyData);
-// console.log(gameLinks);
 
 // @route Homepage
 app.get("/", (req, res) => {
@@ -44,18 +42,16 @@ app.get("/getGames", async (req, res) => {
 });
 
 app.get("/:game", (req, res) => {
-  const game = req.params;
-  const [home, away] = game.game.split("-");
-  // res.json(home, away);
-  // console.log(home, away);
+  const { game } = req.params;
+  console.log(dummyData.games.filter((a) => a.id === game));
+  console.log(game);
   const GamePage = new GamedayDetails(
-    dummyData.games.find((a) => (a.id = game))
+    dummyData.games.find((a) => a.id === game)
   );
+  console.log(GamePage);
   const { title, venue, scheduled } = GamePage;
   console.log(venue, scheduled);
-  // console.log(GamePage);
   res.render("gameDetails.ejs", { title, venue, scheduled });
-  // res.json(GamePage);
 });
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
@@ -72,6 +68,5 @@ function getGameLinks(resBody) {
   gameLinks = resBody.games.map((a) => (a = `${a.home.abbr}-${a.away.abbr}`));
 }
 function getDummyGameLinks(resBody) {
-  // gameLinks = dummyData.games.map((a) => (a = `${a.home.abbr}-${a.away.abbr}`));
   gameLinks = dummyData.games.map((a) => (a = `${a.id}`));
 }
