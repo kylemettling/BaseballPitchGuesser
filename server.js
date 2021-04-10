@@ -22,7 +22,6 @@ app.use(express.json());
 
 const API_KEY = process.env.API_KEY;
 const SCHEDULE_ENDPOINT = `https://api.sportradar.us/mlb/trial/v7/en/games/2021/${month}/${day}/schedule.json?api_key=${API_KEY}`;
-let gameData;
 // getDummyGameLinks(dummyData);
 
 function getBoxscore(gameId) {
@@ -58,10 +57,10 @@ app.get("/game/:matchId/box", async (req, res) => {
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
 
-function returnGameSchedule(resBody) {
-  return resBody.games.map((a) => (a = `${a.away.name} @ ${a.home.name}`));
-}
-function getGameLinks() {
-  const gameLinks = gameData.map((a) => (a = `${a.id}`));
-  return gameLinks;
-}
+// function returnGameSchedule(resBody) {
+//   return resBody.games.map((a) => (a = `${a.away.name} @ ${a.home.name}`));
+// }
+// function getGameLinks() {
+//   const gameLinks = gameData.map((a) => (a = `${a.id}`));
+//   return gameLinks;
+// }
