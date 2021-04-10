@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/gameday/style.css" />
-    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/gameday/style.css" />
+    <title><%= gamePage.title %></title>
   </head>
   <body>
     <!-- <form action="/getGames">
       <input type="submit" value="Submit" />
     </form> -->
-    <h3><%= venue %></h3>
+    <h3><%= gamePage.venue %></h3>
+    <span><%= gamePage.home%> @ <%= gamePage.away %></span>
     <span></span>
-    <script src="js/main.js"></script>
+    <script src="js/gameday/main.js"></script>
   </body>
 </html>
