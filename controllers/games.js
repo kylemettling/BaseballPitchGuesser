@@ -1,6 +1,6 @@
 const GameList = require("../models/GameList");
 const fetch = require("node-fetch");
-const SCHEDULE_ENDPOINT = require("../config/endpoints");
+const { SCHEDULE_ENDPOINT } = require("../config/endpoints");
 module.exports = {
   getGameList: async (req, res) => {
     try {
@@ -9,15 +9,23 @@ module.exports = {
         .then((res) => res.json())
         .then((body) => {
           gameData = body.games;
+          console.log(gameData);
           getGameLinks();
           res.render("games.ejs", {
             info: returnGameSchedule(body),
             gameLinks: getGameLinks(gameData),
           });
         });
-      console.log(gameList);
+      // console.log(gameList);
     } catch (err) {
       console.log(err);
     }
   },
 };
+function returnGameSchedule(resBody) {
+  return resBody.games.map((a) => (a = `${a.away.name} @ ${a.home.name}`));
+}
+function getGameLinks() {
+  const gameLinks = gameData.map((a) => (a = `${a.id}`));
+  return gameLinks;
+}
