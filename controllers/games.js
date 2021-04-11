@@ -27,14 +27,14 @@ function returnGameSchedule() {
   return gameData[0].games.map((a) => (a = `${a.away.name} @ ${a.home.name}`));
 }
 function getGameLinks() {
-  return gameData.map((a) => (a = `${a.id}`));
+  return gameData[0].games.map((a) => (a = `${a.id}`));
 }
-function processStored(res, storedGameData) {
-  res.render({
-    matchups: returnGameSchedule(gameData),
-    gameLinks: getGameLinks(gameData),
-  });
-}
+// function processStored(res, storedGameData) {
+//   res.render({
+//     matchups: returnGameSchedule(gameData),
+//     gameLinks: getGameLinks(gameData),
+//   });
+// }
 async function getAndStoreDailySchedule(res) {
   await fetch(SCHEDULE_ENDPOINT)
     .then((res) => res.json())

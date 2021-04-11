@@ -4,6 +4,7 @@ const app = express();
 const connectDB = require("./config/database");
 const homeRoutes = require("./routes/home");
 const gameListRoutes = require("./routes/gamesList");
+const gamePageRoutes = require("./routes/gamePage");
 const fetch = require("node-fetch");
 const PORT = 5000;
 const GamedayDetails = require("./models/gameday");
@@ -21,7 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const API_KEY = process.env.API_KEY;
-const SCHEDULE_ENDPOINT = `https://api.sportradar.us/mlb/trial/v7/en/games/2021/${month}/${day}/schedule.json?api_key=${API_KEY}`;
 // getDummyGameLinks(dummyData);
 
 function getBoxscore(gameId) {
@@ -33,13 +33,7 @@ app.get("/", homeRoutes);
 // @route Game Schedule page
 app.get("/getGames", gameListRoutes);
 
-app.get("/game/:matchupId", (req, res) => {
-  const { matchupId } = req.params;
-  console.log(gameData);
-  const foundGame = gameData.find((a) => a.id === matchupId);
-  const gamePage = new GamedayDetails(foundGame);
-  res.render("gameDetails.ejs", { gamePage });
-});
+app.get("/game/:matchupId", gamePageRoutes);
 
 app.get("/game/:matchId/box", async (req, res) => {
   const { matchId } = req.params;
