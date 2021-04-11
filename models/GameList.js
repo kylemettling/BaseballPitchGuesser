@@ -6,7 +6,7 @@ const GameListSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    type: Array,
+    type: String,
     required: true,
   },
 });
