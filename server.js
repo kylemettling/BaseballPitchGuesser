@@ -33,13 +33,6 @@ app.get("/", homeRoutes);
 // @route Game Schedule page
 app.get("/getGames", gameListRoutes);
 
-// Dummy API call
-// res.render("games.ejs", {
-//   info: returnDummyGameSchedule(dummyData),
-//   gameLinks,
-// });
-// }
-
 app.get("/game/:matchupId", (req, res) => {
   const { matchupId } = req.params;
   console.log(gameData);
@@ -56,11 +49,3 @@ app.get("/game/:matchId/box", async (req, res) => {
 });
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
-
-// function returnGameSchedule(resBody) {
-//   return resBody.games.map((a) => (a = `${a.away.name} @ ${a.home.name}`));
-// }
-// function getGameLinks() {
-//   const gameLinks = gameData.map((a) => (a = `${a.id}`));
-//   return gameLinks;
-// }
