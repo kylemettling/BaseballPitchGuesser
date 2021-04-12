@@ -35,11 +35,4 @@ app.get("/getGames", gameListRoutes);
 
 app.get("/game/:matchupId", gamePageRoutes);
 
-app.get("/game/:matchId/box", async (req, res) => {
-  const { matchId } = req.params;
-  await fetch(getBoxscore(matchId))
-    .then((res) => res.json())
-    .then((data) => res.json(data));
-});
-
 app.listen(PORT, console.log(`Server running on port ${PORT}`));

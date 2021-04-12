@@ -9,8 +9,9 @@ module.exports = {
       const box = await fetch(BOXSCORE_ENDPOINT.replace("gameId", matchupId))
         .then((res) => res.json())
         .then((body) => {
-          //    const boxscore = new BoxScore(body)
-          res.json(body);
+          // console.log(body.game);
+          const boxscore = new BoxScore(body.game);
+          res.render("gameDetails.ejs", { boxscore });
         });
       // .then((body) => res.json(body));
     } catch (err) {
