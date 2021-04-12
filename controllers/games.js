@@ -12,8 +12,8 @@ module.exports = {
       const storedGameData = await GameList.find({ date: currentDay });
       gameData =
         storedGameData.length === 0
-          ? getAndStoreDailySchedule(res)
-          : storedGameData;
+          ? getAndStoreDailySchedule(res)[0]
+          : storedGameData[0];
       res.render("games.ejs", {
         matchups: returnGameSchedule(gameData),
         gameLinks: getGameLinks(gameData),
@@ -24,10 +24,10 @@ module.exports = {
   },
 };
 function returnGameSchedule() {
-  return gameData[0].games.map((a) => (a = `${a.away.name} @ ${a.home.name}`));
+  return gameData.games.map((a) => (a = `${a.away.name} @ ${a.home.name}`));
 }
 function getGameLinks() {
-  return gameData[0].games.map((a) => (a = `${a.id}`));
+  return gameData.games.map((a) => (a = `${a.id}`));
 }
 // function processStored(res, storedGameData) {
 //   res.render({
@@ -40,7 +40,7 @@ async function getAndStoreDailySchedule(res) {
     .then((res) => res.json())
     .then((body) => {
       const { games } = body;
-      gameData = games;
+      gameData = games[0];
       GameList.create({ games, date: currentDay });
     });
 }
