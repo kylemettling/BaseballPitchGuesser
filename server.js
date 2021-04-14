@@ -7,7 +7,6 @@ const gameListRoutes = require("./routes/gamesList");
 const gamePageRoutes = require("./routes/gamePage");
 const fetch = require("node-fetch");
 const PORT = 5000;
-const GamedayDetails = require("./models/gameday");
 // Set date and month
 let today = new Date();
 const { month, day } = { day: today.getDate(), month: today.getMonth() + 1 };

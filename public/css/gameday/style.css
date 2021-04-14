@@ -3,17 +3,29 @@ title {
   justify-content: center;
   font-size: 50px;
 }
+.mainCon {
+  display: flex;
+  justify-content: space-around;
+  /* width: 500px; */
+}
 .boxCon {
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: inline-flex;
+  flex-direction: column;
+  align-self: flex-start;
+  padding-right: 15%;
+  /* flex-grow: 2; */
+  /* flex-basis: 300px; */
   /* justify-content: left; */
 }
 .boxLegend,
 .homeBox,
 .awayBox {
+  /* display: grid; */
+  /* gap: 0; */
   display: flex;
+  /* flex-basis: 25%; */
   /* justify-content: center; */
-  padding-left: 5%;
+  /* padding-left: 5%; */
   /* align-items: center; */
   /* flex-basis: 50%; */
 }
@@ -31,6 +43,10 @@ title {
   border: 1px solid rgba(0, 0, 0, 0.75);
 }
 .currentPitcher {
-  display: flex;
-  justify-content: center;
+  display: inline-flex;
+  /* padding-right: 15%; */
+  /* justify-content: center;
+  align-self: center; */
+  /* align-items: flex-end; */
+  align-content: flex-end;
 }

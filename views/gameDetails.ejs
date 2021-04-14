@@ -19,26 +19,28 @@
   <h3>
     <%= `${box.away.name} vs. ${box.home.name}` %>
   </h3>
-  <div class="boxCon">
-    <span class='boxLegend'>
-      <span class='blank'></span><span class=''>R</span><span class=''>H</span><span class=''>E</span>
-    </span>
-    <span class='homeBox'>
-      <% Object.keys(box.generateHomeBox()).forEach((a, b)=> {%>
-        <span class='<%= a %>'>
-          <%= box.generateHomeBox()[a] %>
-        </span>
-        <% }) %>
-    </span>
-    <span class='awayBox'>
-      <% Object.keys(box.generateAwayBox()).forEach((a, b)=> {%>
-        <span class='<%= a %>'>
-          <%= box.generateAwayBox()[a] %>
-        </span>
-        <% }) %>
-    </span>
-    <section class='currentPitcher'>Current Pitcher:
-    </section>
+  <div class='mainCon'>
+    <div class="boxCon">
+      <span class='boxLegend'>
+        <span class='blank'></span><span class=''>R</span><span class=''>H</span><span class=''>E</span>
+      </span>
+      <span class='homeBox'>
+        <% Object.keys(box.generateHomeBox()).forEach((a, b)=> {%>
+          <span class='<%= a %>'>
+            <%= box.generateHomeBox()[a] %>
+          </span>
+          <% }) %>
+      </span>
+      <span class='awayBox'>
+        <% Object.keys(box.generateAwayBox()).forEach((a, b)=> {%>
+          <span class='<%= a %>'>
+            <%= box.generateAwayBox()[a] %>
+          </span>
+          <% }) %>
+      </span>
+    </div>
+    <div class='currentPitcher'>Current Pitcher:
+    </div>
   </div>
   <script src="js/gameday/main.js"></script>
 </body>
