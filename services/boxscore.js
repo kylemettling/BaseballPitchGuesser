@@ -2,6 +2,7 @@ class BoxScore {
   constructor(data) {
     this.data = data;
     this.home = data.scoring.home;
+    this.home.name = data.scoring.home.name;
     this.away = data.scoring.away;
     this.home.runsCount = data.scoring.home.runs;
     this.home.hitsCount = data.scoring.home.hits;
@@ -11,20 +12,32 @@ class BoxScore {
     this.away.hitsCount = data.scoring.away.hits;
     this.away.errorsCount = data.scoring.away.errors;
     this.away.abbr = data.scoring.away.abbr;
+    this.homeBox = [
+      this.home.abbr,
+      this.home.runsCount,
+      this.home.hitsCount,
+      this.home.errorsCount,
+    ];
     // this.generateBoxscore();
   }
-  generateBoxscore() {
-    const teams = [this.home, this.away];
-    // console.log(teams);
-    const boxItems = {};
-    teams.forEach((a, b) => {
-      boxItems[teams[b].abbr] = {
-        runs: a.runs,
-        hits: a.hits,
-        errors: a.errors,
-      };
-    });
-    console.log(boxItems);
+  generateHomeBox() {
+    const homeTeam = this.home;
+    const boxItems = {
+      abbr: homeTeam.abbr,
+      runs: homeTeam.runs,
+      hits: homeTeam.hits,
+      errors: homeTeam.errors,
+    };
+    return boxItems;
+  }
+  generateAwayBox() {
+    const awayTeam = this.away;
+    const boxItems = {
+      abbr: awayTeam.abbr,
+      runs: awayTeam.runs,
+      hits: awayTeam.hits,
+      errors: awayTeam.errors,
+    };
     return boxItems;
   }
 

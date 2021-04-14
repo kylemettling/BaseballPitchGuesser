@@ -11,7 +11,7 @@ module.exports = {
         .then((body) => {
           // console.log(body.game);
           const boxscore = new BoxScore(body.game);
-          res.render("gameDetails.ejs", { boxscore });
+          res.render("gameDetails.ejs", { box: boxscore });
         });
       // .then((body) => res.json(body));
     } catch (err) {
