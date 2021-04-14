@@ -1,24 +1,33 @@
 class BoxScore {
   constructor(data) {
     this.data = data;
-    this.home = data.home;
-    this.away = data.away;
-    this.home.runsCount = data.home.runs;
-    this.home.hitsCount = data.home.runs;
-    this.home.errorsCount = data.home.runs;
-    this.home.abbr = data.home.abbr;
-    this.away.runsCount = data.away.runs;
-    this.away.hitsCount = data.away.runs;
-    this.away.errorsCount = data.away.runs;
-    this.away.abbr = data.away.abbr;
-    this.generateBoxscore();
+    this.home = data.scoring.home;
+    this.away = data.scoring.away;
+    this.home.runsCount = data.scoring.home.runs;
+    this.home.hitsCount = data.scoring.home.hits;
+    this.home.errorsCount = data.scoring.home.errors;
+    this.home.abbr = data.scoring.home.abbr;
+    this.away.runsCount = data.scoring.away.runs;
+    this.away.hitsCount = data.scoring.away.hits;
+    this.away.errorsCount = data.scoring.away.errors;
+    this.away.abbr = data.scoring.away.abbr;
+    // this.generateBoxscore();
   }
   generateBoxscore() {
-    const { runs: hRuns, hHits, hErrors } = this.home;
-    const { runs: aRuns, aHits, aErrors } = this.away;
-    console.log(hRuns, aRuns);
-    // console.log([this.home, this.away]);
+    const teams = [this.home, this.away];
+    // console.log(teams);
+    const boxItems = {};
+    teams.forEach((a, b) => {
+      boxItems[teams[b].abbr] = {
+        runs: a.runs,
+        hits: a.hits,
+        errors: a.errors,
+      };
+    });
+    console.log(boxItems);
+    return boxItems;
   }
+
   getVenueDetails() {
     return `${this.data.venue.name} in ${this.data.venue.city} ${this.data.venue.state}`;
   }
