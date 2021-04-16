@@ -12,7 +12,8 @@ title {
   display: inline-flex;
   flex-direction: column;
   align-self: flex-start;
-  padding-right: 15%;
+  flex-grow: 3;
+  padding-left: 5%;
   /* flex-grow: 2; */
   /* flex-basis: 300px; */
   /* justify-content: left; */
@@ -44,9 +45,13 @@ title {
 }
 .currentPitcher {
   display: inline-flex;
+  flex-grow: 1;
+  padding-right: 5%;
+  font-weight: bold;
+  font-size: 24px;
   /* padding-right: 15%; */
   /* justify-content: center;
   align-self: center; */
   /* align-items: flex-end; */
-  align-content: flex-end;
+  /* align-content: flex-end; */
 }

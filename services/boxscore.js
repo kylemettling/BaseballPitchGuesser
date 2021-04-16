@@ -18,7 +18,7 @@ class BoxScore {
       this.home.hitsCount,
       this.home.errorsCount,
     ];
-    // this.generateBoxscore();
+    // this.getHalfs();
   }
   generateHomeBox() {
     const homeTeam = this.home;
@@ -43,6 +43,10 @@ class BoxScore {
 
   getVenueDetails() {
     return `${this.data.venue.name} in ${this.data.venue.city} ${this.data.venue.state}`;
+  }
+
+  getHalfs() {
+    console.log(this.data.innings[2].halfs[1].events[0].at_bat.events);
   }
 }
 

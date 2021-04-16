@@ -6,14 +6,12 @@ module.exports = {
   getGamePage: async (req, res) => {
     try {
       const { matchupId } = req.params;
-      const box = await fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
+      await fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
         .then((res) => res.json())
         .then((body) => {
-          // console.log(body.game);
           const boxscore = new BoxScore(body.game);
           res.render("gameDetails.ejs", { box: boxscore });
         });
-      // .then((body) => res.json(body));
     } catch (err) {
       console.log(err);
     }
