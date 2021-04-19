@@ -1,3 +1,5 @@
+const { json } = require("express");
+
 class BoxScore {
   constructor(data) {
     this.data = data;
@@ -18,17 +20,10 @@ class BoxScore {
       this.home.hitsCount,
       this.home.errorsCount,
     ];
-    this.innings = this.data.innings;
-    this.halfs = this.data.innings[0].halfs[0];
-    this.lengthOfInnings = this.data.innings.length;
-    this.currentInning = this.data.innings[4].halfs[0].events;
-    this.hitter = this.currentInning[
-      this.currentInning.length - 1
-    ].at_bat.hitter;
-    this.pitcherDetails = this.currentInning[
-      this.currentInning.length - 1
-    ].at_bat.pitcher;
-    // this.getHalfs();
+    // this.currentInning = this.data.innings.length - 1;
+    // this.inningInfo = JSON.stringify(
+    //   this.data.innings[this.currentInning].halfs.length
+    // );
   }
   generateHomeBox() {
     const homeTeam = this.home;
@@ -56,24 +51,27 @@ class BoxScore {
   }
 
   getHalfs() {
-    console.log(this.data.innings[2].halfs[1].events[0].at_bat.events);
+    // console.log(this.currentInning.events[]);
+    JSON.stringify(this.currentInning.events);
   }
 
   getCurrentInning() {
-    const currentInning = this.innings.length - 1;
-    console.log(currentInning);
-    let currentHalf = JSON.stringify(
-      this.innings[this.innings.length - 1].halfs
+    this.currentInning = this.data.innings.length - 1;
+    this.bottomHalf = JSON.stringify(
+      this.data.innings[this.currentInning].halfs[0].events
     );
-    console.log(currentHalf[1].events);
-    currentHalf[1].events === []
-      ? (currentHalf = "Top")
-      : (currentHalf = "Bot");
-    const ending = "th";
-    // currentHalf === "T" ? (currentHalf = "Top") : (currentHalf = "Bot");
-    // return `Current Inning: ${currentHalf} of the ${currentInning}`;
-    // let ending =
-    return `${currentHalf} ${currentInning}${ending}`;
+    this.inningInfo = JSON.stringify(
+      this.data.innings[this.currentInning].halfs[0].events
+    );
+    //   const currentInning = this.innings.length - 1;
+    //   console.log(currentInning);
+    // let currentHalf = this.inningInfo[this.currentInning];
+    // console.log(currentHalf[1]);
+    //   currentHalf[1].events === []
+    //     ? (currentHalf = "Top")
+    //     : (currentHalf = "Bot");
+    //   const ending = "th";
+    return `${this.currentInning} ${this.bottomHalf}`;
   }
 }
 
