@@ -50,19 +50,20 @@ class BoxScore {
     return `${this.data.venue.name} in ${this.data.venue.city} ${this.data.venue.state}`;
   }
 
-  getHalfs() {
+  getInningHalf() {
     // console.log(this.currentInning.events[]);
     JSON.stringify(this.currentInning.events);
   }
 
   getCurrentInning() {
-    this.currentInning = this.data.innings.length - 1;
-    this.bottomHalf = JSON.stringify(
-      this.data.innings[this.currentInning].halfs[0].events
-    );
-    this.inningInfo = JSON.stringify(
-      this.data.innings[this.currentInning].halfs[0].events
-    );
+    this.currentInningNumber = this.data.innings.length - 1;
+    this.currentInningInfo = this.data.innings[this.currentInningNumber];
+    this.bottomOrTop = () => {
+      return JSON.stringify(this.currentInningInfo.halfs[1].events) === []
+        ? "Top"
+        : "Bot";
+    };
+    this.halfInfo = this.currentInning;
     //   const currentInning = this.innings.length - 1;
     //   console.log(currentInning);
     // let currentHalf = this.inningInfo[this.currentInning];
@@ -71,7 +72,9 @@ class BoxScore {
     //     ? (currentHalf = "Top")
     //     : (currentHalf = "Bot");
     //   const ending = "th";
-    return `${this.currentInning} ${this.bottomHalf}`;
+    return `${this.bottomOrTop()} of inning ${this.currentInningNumber}  ${
+      JSON.stringify(this.currentInningInfo.halfs[1].events) === []
+    }`;
   }
 }
 

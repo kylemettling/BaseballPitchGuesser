@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 100vw;
+}
 title {
   display: flex;
   justify-content: center;
@@ -11,7 +19,8 @@ title {
 .boxCon {
   display: inline-flex;
   flex-direction: column;
-  align-self: flex-start;
+  /* align-self: flex-start; */
+  align-self: center;
   flex-grow: 3;
   padding-left: 5%;
   /* flex-grow: 2; */
