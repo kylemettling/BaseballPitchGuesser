@@ -91,7 +91,7 @@ class BoxScore {
     const { preferred_name, last_name } = this.getCurrentAtBat().hitter;
     return `${preferred_name} ${last_name}`;
   }
-  getAtBAtDetails() {
+  getAtBatDetails() {
     return Object.keys(this.currentInningInfo.halfs[1].events);
     // return JSON.stringify(this.currentInningInfo.halfs[1].events);
   }
