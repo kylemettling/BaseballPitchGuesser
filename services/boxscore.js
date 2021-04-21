@@ -20,6 +20,9 @@ class BoxScore {
       this.home.hitsCount,
       this.home.errorsCount,
     ];
+    this.currentInningNumber = this.data.innings.length - 1;
+    this.currentInningInfo = this.data.innings[this.currentInningNumber];
+    this.currentInningHalf = Number;
     // this.currentInning = this.data.innings.length - 1;
     // this.inningInfo = JSON.stringify(
     //   this.data.innings[this.currentInning].halfs.length
@@ -47,17 +50,10 @@ class BoxScore {
   }
 
   getVenueDetails() {
-    return `${this.data.venue.name} in ${this.data.venue.city} ${this.data.venue.state}`;
-  }
-
-  getInningHalf() {
-    // console.log(this.currentInning.events[]);
-    JSON.stringify(this.currentInning.events);
+    return `${this.data.venue.name} in ${this.data.venue.city}, ${this.data.venue.state}`;
   }
 
   getCurrentInning() {
-    this.currentInningNumber = this.data.innings.length - 1;
-    this.currentInningInfo = this.data.innings[this.currentInningNumber];
     this.bottomOrTop = () => {
       return JSON.stringify(this.currentInningInfo.halfs[1].events) ===
         JSON.stringify([])
@@ -66,6 +62,38 @@ class BoxScore {
     };
     this.halfInfo = this.currentInning;
     return `${this.bottomOrTop()} of inning ${this.currentInningNumber}`;
+  }
+
+  getInningHalf() {
+    this.currentInningHalf =
+      JSON.stringify(this.currentInningInfo.halfs[1].events) ===
+      JSON.stringify([])
+        ? 0
+        : 1;
+  }
+
+  getCurrentAtBat() {
+    this.getInningHalf();
+    const currentInfo = this.currentInningInfo.halfs[this.currentInningHalf];
+    const currentAtBat = currentInfo.events.length;
+    return currentInfo.events[currentAtBat - 1].at_bat;
+    // const { preferred_name, last_name } = currentInfo.events[
+    //   currentAtBat - 1
+    // ].at_bat.hitter;
+    // return JSON.stringify(currentInfo.events[currentAtBat - 1]);
+  }
+  getCurrentPitcher() {
+    const { preferred_name, last_name } = this.getCurrentAtBat().pitcher;
+    return `${preferred_name} ${last_name}`;
+  }
+
+  getCurrentBatter() {
+    const { preferred_name, last_name } = this.getCurrentAtBat().hitter;
+    return `${preferred_name} ${last_name}`;
+  }
+  getAtBAtDetails() {
+    return Object.keys(this.currentInningInfo.halfs[1].events);
+    // return JSON.stringify(this.currentInningInfo.halfs[1].events);
   }
 }
 

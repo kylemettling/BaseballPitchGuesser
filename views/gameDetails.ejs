@@ -13,7 +13,8 @@
     <!-- <form action="/getGames">
       <input type="submit" value="Submit" />
     </form> -->
-    <h3><%= `${box.away.name} vs. ${box.home.name}` %></h3>
+    <h2><%= `${box.away.name} vs. ${box.home.name}` %></h2>
+    <h3><%= `${box.getVenueDetails()}` %></h3>
     <div class="mainCon">
       <div class="boxCon">
         <span class="boxLegend">
@@ -31,8 +32,17 @@
           <% }) %>
         </span>
       </div>
-      <div class="currentPitcher">Current Pitcher: <%= box.pitcher %></div>
-      <div class="currentInning">Half info: <%= box.getCurrentInning() %></div>
+      <div class="atBatDetails">
+        <div class="currentPitcher">
+          Current Pitcher: <%= box.getCurrentPitcher() %>
+        </div>
+        <div class="currentHitter">
+          Current Batter: <%= box.getCurrentBatter() %>
+        </div>
+        <div class="currentInning">
+          Half info: <%= box.getCurrentInning() %>
+        </div>
+      </div>
     </div>
     <!-- <script src="js/gameday/main.js"></script> -->
   </body>

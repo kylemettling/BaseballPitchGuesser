@@ -53,14 +53,21 @@ title {
   border: 1px solid rgba(0, 0, 0, 0.75);
 }
 .currentPitcher {
-  display: inline-flex;
+  /* display: inline-flex;
   flex-grow: 1;
   padding-right: 5%;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 24px; */
   /* padding-right: 15%; */
   /* justify-content: center;
   align-self: center; */
   /* align-items: flex-end; */
   /* align-content: flex-end; */
+}
+.atBatDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 24px;
+  padding-right: 5%;
 }
