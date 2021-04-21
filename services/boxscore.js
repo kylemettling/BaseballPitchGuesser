@@ -59,22 +59,13 @@ class BoxScore {
     this.currentInningNumber = this.data.innings.length - 1;
     this.currentInningInfo = this.data.innings[this.currentInningNumber];
     this.bottomOrTop = () => {
-      return JSON.stringify(this.currentInningInfo.halfs[1].events) === []
+      return JSON.stringify(this.currentInningInfo.halfs[1].events) ===
+        JSON.stringify([])
         ? "Top"
         : "Bot";
     };
     this.halfInfo = this.currentInning;
-    //   const currentInning = this.innings.length - 1;
-    //   console.log(currentInning);
-    // let currentHalf = this.inningInfo[this.currentInning];
-    // console.log(currentHalf[1]);
-    //   currentHalf[1].events === []
-    //     ? (currentHalf = "Top")
-    //     : (currentHalf = "Bot");
-    //   const ending = "th";
-    return `${this.bottomOrTop()} of inning ${this.currentInningNumber}  ${
-      JSON.stringify(this.currentInningInfo.halfs[1].events) === []
-    }`;
+    return `${this.bottomOrTop()} of inning ${this.currentInningNumber}`;
   }
 }
 
