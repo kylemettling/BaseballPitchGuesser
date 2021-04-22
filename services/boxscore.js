@@ -75,8 +75,8 @@ class BoxScore {
   getCurrentAtBat() {
     this.getInningHalf();
     const currentInfo = this.currentInningInfo.halfs[this.currentInningHalf];
-    const currentAtBat = currentInfo.events.length;
-    return currentInfo.events[currentAtBat - 1].at_bat;
+    const currentAtBat = currentInfo.events.length - 1;
+    return currentInfo.events[currentAtBat].at_bat;
     // const { preferred_name, last_name } = currentInfo.events[
     //   currentAtBat - 1
     // ].at_bat.hitter;
@@ -93,7 +93,21 @@ class BoxScore {
   }
   getAtBatDetails() {
     return Object.keys(this.currentInningInfo.halfs[1].events);
-    // return JSON.stringify(this.currentInningInfo.halfs[1].events);
+  }
+  getCurrentCount() {
+    const atBatLength = this.getCurrentAtBat().events.length - 1;
+    const { balls, strikes, outs } = this.getCurrentAtBat().events[atBatLength]
+      .count
+      ? this.getCurrentAtBat().events[atBatLength].count
+      : { balls: 0, strikes: 0, outs: 0 };
+    return `balls: ${balls}, strikes: ${strikes}, outs: ${outs}`;
+  }
+  getPitcherStats() {
+    const atBatLength = this.getCurrentAtBat().events.length - 1;
+    const { speed, zone, code, description } = this.getCurrentAtBat().events[
+      atBatLength
+    ].mlb_pitch_data;
+    return `speed: ${speed}, zone: ${zone}, code: ${code}, description: ${description}`;
   }
 }
 
