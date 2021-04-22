@@ -20,7 +20,7 @@ title {
   display: inline-flex;
   flex-direction: column;
   /* align-self: flex-start; */
-  align-self: center;
+  align-self: flex-start;
   flex-grow: 3;
   padding-left: 5%;
   /* flex-grow: 2; */

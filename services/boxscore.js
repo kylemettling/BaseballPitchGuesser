@@ -96,18 +96,30 @@ class BoxScore {
   }
   getCurrentCount() {
     const atBatLength = this.getCurrentAtBat().events.length - 1;
-    const { balls, strikes, outs } = this.getCurrentAtBat().events[atBatLength]
-      .count
-      ? this.getCurrentAtBat().events[atBatLength].count
-      : { balls: 0, strikes: 0, outs: 0 };
+    const { balls, strikes, outs } = !this.getCurrentAtBat().events[atBatLength]
+      ? { balls: 0, strikes: 0, outs: this.getCurrentOuts() }
+      : this.getCurrentAtBat().events[atBatLength].count;
     return `balls: ${balls}, strikes: ${strikes}, outs: ${outs}`;
   }
   getPitcherStats() {
     const atBatLength = this.getCurrentAtBat().events.length - 1;
-    const { speed, zone, code, description } = this.getCurrentAtBat().events[
+    const { speed, zone, code, description } = !this.getCurrentAtBat().events[
       atBatLength
-    ].mlb_pitch_data;
+    ]
+      ? { speed: 0, zone: "N/A", code: "N/A", description: "No Pitch Data" }
+      : this.getCurrentAtBat().events[atBatLength].mlb_pitch_data;
     return `speed: ${speed}, zone: ${zone}, code: ${code}, description: ${description}`;
+  }
+
+  getCurrentOuts() {
+    const currentInfo = this.currentInningInfo.halfs[this.currentInningHalf];
+    const previousAtBat = currentInfo.events.length - 2;
+    const previousAtBatLength =
+      currentInfo.events[previousAtBat].at_bat.events.length - 1;
+    const { outs } = currentInfo.events[previousAtBat].at_bat.events[
+      previousAtBatLength
+    ].count;
+    return outs;
   }
 }
 
