@@ -112,14 +112,34 @@ class BoxScore {
   }
 
   getCurrentOuts() {
+    const previousBatter = this.getPreviousAtBat();
+    // const currentInfo = this.currentInningInfo.halfs[this.currentInningHalf];
+    // const previousAtBat = currentInfo.events.length - 2;
+    const previousAtBatLength = previousBatter.length - 2;
+    //   currentInfo.events[previousAtBat].at_bat.events.length - 1;
+    const { outs } = previousBatter
+      ? previousBatter.events[previousAtBatLength].count
+      : 0;
+    return outs;
+    // const { outs } = currentInfo.events[previousAtBat].at_bat.events
+    //   ? currentInfo.events[previousAtBat].at_bat.events[previousAtBatLength]
+    //       .count
+    //   : 0;
+    // return outs;
+  }
+  getPreviousAtBat() {
     const currentInfo = this.currentInningInfo.halfs[this.currentInningHalf];
     const previousAtBat = currentInfo.events.length - 2;
     const previousAtBatLength =
       currentInfo.events[previousAtBat].at_bat.events.length - 1;
-    const { outs } = currentInfo.events[previousAtBat].at_bat.events[
-      previousAtBatLength
-    ].count;
-    return outs;
+    return currentInfo.events[previousAtBat].at_bat;
+    // return currentInfo.events[previousAtBat].at_bat.events;
+  }
+  getPreviousAtBatResult() {
+    const previousBatter = this.getPreviousAtBat();
+    const previousAtBatLength = previousBatter.length - 2;
+    // console.log(previousBatter.events.description);
+    return previousBatter.description;
   }
 }
 

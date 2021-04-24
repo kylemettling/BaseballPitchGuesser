@@ -47,6 +47,9 @@
           Pitch Details: <%= box.getPitcherStats() %>
         </div>
         <div class="currentInning">
+          Previous At Bat: <%= box.getPreviousAtBatResult() %>
+        </div>
+        <div class="currentInning">
           Half info: <%= JSON.stringify(box.getCurrentAtBat()) %>
         </div>
       </div>
