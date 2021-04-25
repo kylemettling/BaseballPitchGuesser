@@ -1,4 +1,5 @@
 /config/process.env
-data.json
 /node_modules/
+/reference/
+data.json
 pbp.json
