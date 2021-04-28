@@ -58,7 +58,19 @@ title {
 .atBatDetails {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   font-size: 24px;
   padding-right: 5%;
+}
+.batZoneCon {
+  background: green;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.batZone {
 }
