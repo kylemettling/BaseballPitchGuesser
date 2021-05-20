@@ -51,15 +51,29 @@ title {
   padding-right: 5%;
 }
 .batZoneContainer {
+  border: 2px solid black;
   text-align: center;
-  width: 75%;
+  /* width: 75%; */
+  align-content: center;
   height: 200px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
+  gap: 0;
 }
 .pitchIndicator {
-  background-color: darkred;
+  background-color: rgba(131, 42, 42, 0.75);
+}
+.batZone {
+  width: 40px;
+  height: 40px;
+}
+.batZoneTop,
+.batZoneBottom,
+.batZoneLeft,
+.batZoneRight,
+.batZone {
+  padding-top: 10px;
 }
 /* .batZoneLeft {
   grid-row-start: 2;
