@@ -4,7 +4,7 @@
   padding: 0;
 }
 body {
-  width: 100vw;
+  /* width: 100vw; */
 }
 title {
   display: flex;
@@ -53,13 +53,15 @@ title {
 .batZoneContainer {
   border: 2px solid black;
   text-align: center;
+  align-items: center;
   /* width: 75%; */
   align-content: center;
-  height: 200px;
+  height: 150px;
+  width: 180px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  gap: 0;
+  /* gap: 0;  */
 }
 .pitchIndicator {
   background-color: rgba(131, 42, 42, 0.75);
@@ -73,7 +75,7 @@ title {
 .batZoneLeft,
 .batZoneRight,
 .batZone {
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
 /* .batZoneLeft {
   grid-row-start: 2;

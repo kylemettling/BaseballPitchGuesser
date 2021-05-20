@@ -97,8 +97,7 @@ class BoxScore {
   getCurrentCount() {
     const atBatLength = this.getCurrentAtBat().events.length - 1;
     const { balls, strikes, outs } =
-      !this.getCurrentAtBat().events[atBatLength] ||
-      !this.getCurrentAtBat().events
+      !this.getCurrentAtBat().events[atBatLength] || !this.getCurrentAtBat()
         ? { balls: 0, strikes: 0, outs: this.getCurrentOuts() || 0 }
         : this.getCurrentAtBat().events[atBatLength].count;
     console.log(this.getCurrentAtBat().events[atBatLength]);
@@ -144,7 +143,9 @@ class BoxScore {
     const previousBatter = this.getPreviousAtBat();
     const previousAtBatLength = previousBatter.length - 2;
     console.log(previousBatter);
-    return !previousBatter ? "Top of the inning" : previousBatter.description;
+    return !previousBatter.description
+      ? "Top of the inning"
+      : previousBatter.description;
   }
   getCurrentPitchDetails() {
     const atBatLength = this.getCurrentAtBat().events.length - 1;
