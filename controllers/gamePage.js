@@ -6,6 +6,7 @@ module.exports = {
   getGamePage: async (req, res) => {
     try {
       const { matchupId } = req.params;
+      console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
       await fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
         .then((res) => res.json())
         .then((body) => {

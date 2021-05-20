@@ -144,6 +144,11 @@ class BoxScore {
     // console.log(previousBatter.events.description);
     return previousBatter.description;
   }
+  getCurrentPitchDetails() {
+    const atBatLength = this.getCurrentAtBat().events.length - 1;
+    const { zone } = this.getCurrentAtBat().events[atBatLength].mlb_pitch_data;
+    return zone;
+  }
 }
 
 module.exports = BoxScore;

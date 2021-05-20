@@ -13,31 +13,21 @@ title {
 }
 .mainCon {
   display: flex;
-  justify-content: space-around;
-  /* width: 500px; */
+  justify-content: center;
+  align-content: center;
+  text-align: center;
 }
 .boxCon {
   display: inline-flex;
+  width: 100vw;
   flex-direction: column;
-  /* align-self: flex-start; */
-  align-self: flex-start;
-  flex-grow: 3;
   padding-left: 5%;
-  /* flex-grow: 2; */
-  /* flex-basis: 300px; */
-  /* justify-content: left; */
 }
 .boxLegend,
 .homeBox,
 .awayBox {
-  /* display: grid; */
-  /* gap: 0; */
   display: flex;
-  /* flex-basis: 25%; */
-  /* justify-content: center; */
-  /* padding-left: 5%; */
-  /* align-items: center; */
-  /* flex-basis: 50%; */
+  padding-left: 15%;
 }
 .blank {
   border: none !important;
@@ -53,24 +43,48 @@ title {
   border: 1px solid rgba(0, 0, 0, 0.75);
 }
 .currentInning {
-  width: 800px;
 }
 .atBatDetails {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   font-size: 24px;
   padding-right: 5%;
 }
-.batZoneCon {
-  background: green;
+.batZoneContainer {
+  text-align: center;
+  width: 75%;
+  height: 200px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-
-  text-align: center;
-  justify-content: center;
-  flex-direction: column;
 }
-.batZone {
+.pitchIndicator {
+  background-color: darkred;
 }
+/* .batZoneLeft {
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column: 1;
+}
+.batZoneTop {
+  grid-column-start: 1;
+  column-span: 3;
+  grid-column-end: 5;
+  grid-row: 1;
+}
+.batZoneRight {
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column: 5;
+}
+.batZoneBottom {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  column-span: 5;
+  grid-row: 4;
+}
+.centerZone {
+  grid-area: 2 / 2 / 4 / 4;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+} */
