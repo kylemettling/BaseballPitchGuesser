@@ -51,56 +51,95 @@ title {
   padding-right: 5%;
 }
 .batZoneContainer {
+  /* border: 2px solid black; */
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  height: 300px;
+  /* width: 600px; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+.centerZone {
+  /* grid-area: 2 / 2 / 4 / 4; */
+  grid-area: 2 / 2/ 2/ 2;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  /* grid-area: auto; */
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+.centerZone div {
+  display: flex;
+  text-align: center;
+  width: 50px;
+  align-content: center;
+  height: 60px;
+}
+.batZoneTop {
+  grid-column: 1 / span 3;
+  grid-row: 1;
+}
+.batZoneBottom {
+  grid-column: 1 / span 3;
+  grid-row: 3;
+}
+.batZoneLeft {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+}
+.batZoneRight {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+}
+/* .batZoneContainer {
   border: 2px solid black;
   text-align: center;
   align-items: center;
-  /* width: 75%; */
   align-content: center;
-  height: 150px;
-  width: 180px;
+  height: 550px;
+  width: 680px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  /* gap: 0;  */
-}
+} */
 .pitchIndicator {
   background-color: rgba(131, 42, 42, 0.75);
 }
 .batZone {
-  width: 40px;
-  height: 40px;
+  /* width: 40px; */
+  /* height: 40px; */
 }
 .batZoneTop,
 .batZoneBottom,
 .batZoneLeft,
 .batZoneRight,
-.batZone {
+.batZone,
+.centerZone {
   /* padding-top: 10px; */
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
-/* .batZoneLeft {
-  grid-row-start: 2;
-  grid-row-end: 4;
-  grid-column: 1;
-}
-.batZoneTop {
-  grid-column-start: 1;
-  column-span: 3;
-  grid-column-end: 5;
-  grid-row: 1;
-}
-.batZoneRight {
-  grid-row-start: 2;
-  grid-row-end: 4;
-  grid-column: 5;
-}
+.batZoneTop,
 .batZoneBottom {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  column-span: 5;
-  grid-row: 4;
+  /* width: 120px; */
+  /* height: 40px; */
+  line-height: 60px;
+}
+.batZoneLeft,
+.batZoneRight {
+  width: 50px;
+  /* height: 120px; */
+  line-height: 270px;
 }
 .centerZone {
-  grid-area: 2 / 2 / 4 / 4;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-} */
+  /* width: 40px; */
+  /* height: 40px; */
+}

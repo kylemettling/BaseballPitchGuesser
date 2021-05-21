@@ -1,49 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/gameday/style.css" />
+    <title><%= box.away.abbr %> @ <%= box.home.abbr %></title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/style.css" />
-  <link rel="stylesheet" href="/css/gameday/style.css" />
-  <title>
-    <%= box.away.abbr %> @ <%= box.home.abbr %>
-  </title>
-</head>
-
-<body>
-  <!-- <form action="/getGames">
+  <body>
+    <!-- <form action="/getGames">
       <input type="submit" value="Submit" />
     </form> -->
-  <h2>
-    <%= `${box.away.name} vs. ${box.home.name}` %>
-  </h2>
-  <h3>
-    <%= `${box.getVenueDetails()}` %>
-  </h3>
-  <div class="mainCon">
-    <div class="boxCon">
-      <span class="boxLegend">
-        <span class="blank"></span><span class="13">R</span><span class="13">H</span><span class="13">E</span>
-      </span>
-      <span class="awayBox">
-        <% Object.keys(box.generateAwayBox()).forEach((a, b)=> {%>
-          <span class="<%= a %>">
-            <%= box.generateAwayBox()[a] %>
-          </span>
+    <h2><%= `${box.away.name} vs. ${box.home.name}` %></h2>
+    <h3><%= `${box.getVenueDetails()}` %></h3>
+    <div class="mainCon">
+      <div class="boxCon">
+        <span class="boxLegend">
+          <span class="blank"></span><span class="13">R</span
+          ><span class="13">H</span><span class="13">E</span>
+        </span>
+        <span class="awayBox">
+          <% Object.keys(box.generateAwayBox()).forEach((a, b)=> {%>
+          <span class="<%= a %>"> <%= box.generateAwayBox()[a] %> </span>
           <% }) %>
-      </span>
-      <span class="homeBox">
-        <% Object.keys(box.generateHomeBox()).forEach((a, b)=> {%>
-          <span class="<%= a %>">
-            <%= box.generateHomeBox()[a] %>
-          </span>
+        </span>
+        <span class="homeBox">
+          <% Object.keys(box.generateHomeBox()).forEach((a, b)=> {%>
+          <span class="<%= a %>"> <%= box.generateHomeBox()[a] %> </span>
           <% }) %>
-      </span>
-    </div>
-    <div class="batZoneContainer">
-      <!-- <div class="centerZone"> -->
+        </span>
+      </div>
+      <div class="batZoneContainer">
+        <div class="centerZone">
+          <div id="3" class="batZone">3</div>
+          <div id="2" class="batZone">2</div>
+          <div id="1" class="batZone">1</div>
+          <div id="6" class="batZone">6</div>
+          <div id="5" class="batZone">5</div>
+          <div id="4" class="batZone">4</div>
+          <div id="9" class="batZone">9</div>
+          <div id="8" class="batZone">8</div>
+          <div id="7" class="batZone">7</div>
+        </div>
+        <div id="10" class="batZone batZoneTop">10</div>
+        <div id="11" class="batZone batZoneLeft">11</div>
+        <div id="13" class="batZone batZoneRight">13</div>
+        <div id="12" class="batZone batZoneBottom">12</div>
+      </div>
+      <!-- <div class="batZoneContainer">
       <div id="11" class="batZone"></div>
       <div id="10" class="batZone"></div>
       <div id="10" class="batZone batZoneTop">10</div>
@@ -63,41 +69,36 @@
       <div id="9" class="batZone">9</div>
       <div id="8" class="batZone">8</div>
       <div id="7" class="batZone">7</div>
-      <!-- </div> -->
       <div id="13" class="batZone"></div>
       <div id="11" class="batZone"></div>
       <div id="12" class="batZone"></div>
       <div id="12" class="batZone batZoneBottom">12</div>
       <div id="12" class="batZone"></div>
       <div id="13" class="batZone"></div>
-    </div>
-    <div class="atBatDetails">
-      <div class="currentPitchZone">
-        <%= box.getCurrentPitchDetails() %>
-      </div>
-      <div class="currentPitcher">
-        Current Pitcher: <%= box.getCurrentPitcher() %>
-      </div>
-      <div class="currentHitter">
-        Current Batter: <%= box.getCurrentBatter() %>
-      </div>
-      <div class="currentInning">
-        Half info: <%= box.getCurrentInning() %>
-      </div>
-      <div class="currentInning">Count: <%= box.getCurrentCount() %>
-      </div>
-      <div class="currentInning">
-        Pitch Details: <%= box.getPitcherStats() %>
-      </div>
-      <div class="currentInning">
-        Previous At Bat: <%= box.getPreviousAtBatResult() %>
-      </div>
-      <div class="currentInning">
-        Previous At Bat: <%= box.getPreviousAtBatResult() %>
+    </div> -->
+      <div class="atBatDetails">
+        <div class="currentPitchZone"><%= box.getCurrentPitchDetails() %></div>
+        <div class="currentPitcher">
+          Current Pitcher: <%= box.getCurrentPitcher() %>
+        </div>
+        <div class="currentHitter">
+          Current Batter: <%= box.getCurrentBatter() %>
+        </div>
+        <div class="currentInning">
+          Half info: <%= box.getCurrentInning() %>
+        </div>
+        <div class="currentInning">Count: <%= box.getCurrentCount() %></div>
+        <div class="currentInning">
+          Pitch Details: <%= box.getPitcherStats() %>
+        </div>
+        <div class="currentInning">
+          Previous At Bat: <%= box.getPreviousAtBatResult() %>
+        </div>
+        <div class="currentInning">
+          Previous At Bat: <%= box.getPreviousAtBatResult() %>
+        </div>
       </div>
     </div>
-  </div>
-  <script src="/js/gameday/main.js"></script>
-</body>
-
+    <script src="/js/gameday/main.js"></script>
+  </body>
 </html>
