@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Baseball Pitch Guesser</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
-  <title>Baseball Pitch Guesser</title>
-</head>
+  <body>
+    <h1>Baseball Pitch Guesser</h1>
+    <form action="/auth/google">
+      <!-- <form action="/getGames"> -->
+      <!-- <input type="submit" value="Play Ball!" /> -->
 
-<body>
-  <h1>Baseball Pitch Guesser</h1>
-  <form action="/getGames">
-    <input type="submit" value="Play Ball!" />
-  </form>
-  <script src="js/main.js"></script>
-</body>
-
+      <button id="loginGoogle" type="submit" href="/auth/google">
+        Login With Google
+      </button>
+    </form>
+    <script src="js/main.js"></script>
+  </body>
 </html>

@@ -1,14 +1,30 @@
+// const { default: fetch } = require("node-fetch");
+
+const batZoneItems = document.querySelectorAll(".batZone");
+
+batZoneItems.forEach((item) =>
+  item.addEventListener("click", submitZoneChoice)
+);
+
+function submitZoneChoice(e) {
+  const testing = "TESTING";
+  const pitchGuess = e.target.id;
+  fetch(`${window.location.href}`, {
+    method: "post",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ pitchGuess }),
+  }).then(window.location.reload());
+}
+
 async function getCurrentPitch() {
   const currentPitch = await document.querySelector(".currentPitchZone");
   const rawZoneItems = document.querySelectorAll(".batZone");
-  console.log(rawZoneItems);
   let zoneItems = [...rawZoneItems];
   zoneItems = zoneItems.filter(
     (a) => Number(a.id) === Number(currentPitch.innerHTML)
   );
-  console.log(zoneItems);
   zoneItems.forEach((a) => a.classList.add("pitchIndicator"));
-  console.log(currentPitch.innerHTML);
-  // rawZoneItems.forEach((a) => (a.innerHTML = ""));
 }
 getCurrentPitch();

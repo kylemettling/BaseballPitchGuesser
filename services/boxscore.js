@@ -23,10 +23,12 @@ class BoxScore {
     this.currentInningNumber = this.data.innings.length - 1;
     this.currentInningInfo = this.data.innings[this.currentInningNumber];
     this.currentInningHalf = Number;
-    // this.currentInning = this.data.innings.length - 1;
-    // this.inningInfo = JSON.stringify(
-    //   this.data.innings[this.currentInning].halfs.length
-    // );
+    this.bottomOrTop = () => {
+      return JSON.stringify(this.currentInningInfo.halfs[1].events) ===
+        JSON.stringify([])
+        ? "Top"
+        : "Bot";
+    };
   }
   generateHomeBox() {
     const homeTeam = this.home;
@@ -54,12 +56,12 @@ class BoxScore {
   }
 
   getCurrentInning() {
-    this.bottomOrTop = () => {
-      return JSON.stringify(this.currentInningInfo.halfs[1].events) ===
-        JSON.stringify([])
-        ? "Top"
-        : "Bot";
-    };
+    // this.bottomOrTop = () => {
+    //   return JSON.stringify(this.currentInningInfo.halfs[1].events) ===
+    //     JSON.stringify([])
+    //     ? "Top"
+    //     : "Bot";
+    // };
     this.halfInfo = this.currentInning;
     return `${this.bottomOrTop()} of inning ${this.currentInningNumber}`;
   }
@@ -77,10 +79,6 @@ class BoxScore {
     const currentInfo = this.currentInningInfo.halfs[this.currentInningHalf];
     const currentAtBat = currentInfo.events.length - 1;
     return currentInfo.events[currentAtBat].at_bat;
-    // const { preferred_name, last_name } = currentInfo.events[
-    //   currentAtBat - 1
-    // ].at_bat.hitter;
-    // return JSON.stringify(currentInfo.events[currentAtBat - 1]);
   }
   getCurrentPitcher() {
     const { preferred_name, last_name } = this.getCurrentAtBat().pitcher;
@@ -97,9 +95,9 @@ class BoxScore {
   getCurrentCount() {
     const atBatLength = this.getCurrentAtBat().events.length - 1;
     const { balls, strikes, outs } =
-      !this.getCurrentAtBat().events[atBatLength] ||
-      !this.getCurrentAtBat().events
-        ? { balls: 0, strikes: 0, outs: this.getCurrentOuts() || 0 }
+      // !this.getCurrentAtBat().events[atBatLength] ||
+      !this.getCurrentAtBat().events[atBatLength].count
+        ? { balls: 0, strikes: 0, outs: () => this.getCurrentOuts() || 0 }
         : this.getCurrentAtBat().events[atBatLength].count;
     console.log(this.getCurrentAtBat().events[atBatLength]);
     return `balls: ${balls}, strikes: ${strikes}, outs: ${outs}`;
@@ -116,19 +114,11 @@ class BoxScore {
 
   getCurrentOuts() {
     const previousBatter = this.getPreviousAtBat();
-    // const currentInfo = this.currentInningInfo.halfs[this.currentInningHalf];
-    // const previousAtBat = currentInfo.events.length - 2;
     const previousAtBatLength = previousBatter.length - 2;
-    //   currentInfo.events[previousAtBat].at_bat.events.length - 1;
     const { outs } = previousBatter
       ? previousBatter.events[previousAtBatLength].count
       : 0;
     return outs;
-    // const { outs } = currentInfo.events[previousAtBat].at_bat.events
-    //   ? currentInfo.events[previousAtBat].at_bat.events[previousAtBatLength]
-    //       .count
-    //   : 0;
-    // return outs;
   }
   getPreviousAtBat() {
     const currentInfo = this.currentInningInfo.halfs[this.currentInningHalf];
@@ -141,9 +131,11 @@ class BoxScore {
     // return currentInfo.events[previousAtBat].at_bat.events;
   }
   getPreviousAtBatResult() {
-    const previousBatter = this.getPreviousAtBat();
+    const previousBatter = this.getPreviousAtBat() || "Top of the inning";
+    const previousBatterLastInning = this.getCurrentInning();
     const previousAtBatLength = previousBatter.length - 2;
-    console.log(previousBatter);
+    // console.log(previousBatter.description);
+    // console.log(this.bottomOrTop());
     return !previousBatter ? "Top of the inning" : previousBatter.description;
   }
   getCurrentPitchDetails() {

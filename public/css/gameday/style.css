@@ -75,11 +75,13 @@ title {
   grid-template-rows: repeat(3, 1fr);
 }
 .centerZone div {
+  /* font-weight: bold; */
+  border-radius: 5%;
   display: flex;
   text-align: center;
-  width: 50px;
   align-content: center;
   height: 60px;
+  width: 50px;
 }
 .batZoneTop {
   grid-column: 1 / span 3;
@@ -96,6 +98,9 @@ title {
 .batZoneRight {
   grid-column: 3;
   grid-row: 1 / span 3;
+}
+.batZone:hover {
+  cursor: crosshair;
 }
 /* .batZoneContainer {
   border: 2px solid black;
@@ -122,6 +127,7 @@ title {
 .batZone,
 .centerZone {
   /* padding-top: 10px; */
+  font-weight: bold;
   text-align: center;
   align-items: center;
   align-content: center;
@@ -129,17 +135,22 @@ title {
 }
 .batZoneTop,
 .batZoneBottom {
+  border-radius: 5%;
   /* width: 120px; */
   /* height: 40px; */
   line-height: 60px;
 }
 .batZoneLeft,
 .batZoneRight {
+  border-radius: 5%;
   width: 50px;
   /* height: 120px; */
   line-height: 270px;
 }
-.centerZone {
-  /* width: 40px; */
-  /* height: 40px; */
+.batZoneTop:hover,
+.batZoneBottom:hover,
+.batZoneLeft:hover,
+.batZoneRight:hover,
+.centerZone div:hover {
+  background-color: rgba(0, 142, 0, 0.75);
 }
