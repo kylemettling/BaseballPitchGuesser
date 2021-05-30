@@ -5,8 +5,13 @@ const batZoneItems = document.querySelectorAll(".batZone");
 batZoneItems.forEach((item) =>
   item.addEventListener("click", submitZoneChoice)
 );
-
+// const { sequencenumber } = document.querySelector(".pitchNumber").dataset;
+// const { gameid } = document.querySelector(".boxCon").dataset;
+// console.log(sequencenumber, gameid);
 function submitZoneChoice(e) {
+  const { sequencenumber } = document.querySelector(".pitchNumber").dataset;
+  const { gameid } = document.querySelector(".boxCon").dataset;
+  // console.log(sequencenumber, gameid);
   const testing = "TESTING";
   const pitchGuess = e.target.id;
   fetch(`${window.location.href}`, {
@@ -14,7 +19,7 @@ function submitZoneChoice(e) {
     headers: {
       "content-type": "application/json",
     },
-    body: JSON.stringify({ pitchGuess }),
+    body: JSON.stringify({ pitchGuess, sequencenumber, gameid }),
   }).then(window.location.reload());
 }
 

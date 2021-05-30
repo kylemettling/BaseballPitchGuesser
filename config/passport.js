@@ -19,6 +19,7 @@ module.exports = (passport) => {
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
           image: profile.photos[0].value,
+          pitchGuesses: [],
         };
 
         try {

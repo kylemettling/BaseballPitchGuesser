@@ -7,19 +7,31 @@ module.exports = {
   getGamePage: async (req, res) => {
     try {
       const { matchupId } = req.params;
-      const pitchGuess = "Guess where the next pitch will go";
+      const userGuess = "Guess where the next pitch will go";
       console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
       await fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
         .then((res) => res.json())
         .then((body) => {
           const boxscore = new BoxScore(body.game);
-          res.render("gameDetails.ejs", { box: boxscore, pitchGuess });
+          res.render("gameDetails.ejs", { box: boxscore, userGuess });
         });
     } catch (err) {
       console.log(err);
     }
   },
-  postZoneChoice: (req, res) => {
-    console.log(req.user, req.body);
+  postZoneChoice: async (req, res) => {
+    try {
+      await User.findOneAndUpdate(
+        { _id: req.user.id },
+        {
+          $push: {
+            pitchGuesses: req.body,
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+    // console.log(userGuess);
   },
 };

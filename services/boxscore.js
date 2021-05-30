@@ -3,6 +3,7 @@ const { json } = require("express");
 class BoxScore {
   constructor(data) {
     this.data = data;
+    this.gameId = data.id;
     this.home = data.scoring.home;
     this.home.name = data.scoring.home.name;
     this.away = data.scoring.away;
@@ -29,6 +30,12 @@ class BoxScore {
         ? "Top"
         : "Bot";
     };
+    this.currentPitchNumber = !this.getCurrentAtBat().events[
+      this.getCurrentAtBat().events.length - 1
+    ]
+      ? "Commercial Break!"
+      : this.getCurrentAtBat().events[this.getCurrentAtBat().events.length - 1]
+          .sequence_number;
   }
   generateHomeBox() {
     const homeTeam = this.home;
@@ -99,7 +106,7 @@ class BoxScore {
       !this.getCurrentAtBat().events[atBatLength].count
         ? { balls: 0, strikes: 0, outs: () => this.getCurrentOuts() || 0 }
         : this.getCurrentAtBat().events[atBatLength].count;
-    console.log(this.getCurrentAtBat().events[atBatLength]);
+    // console.log(this.getCurrentAtBat().events[atBatLength]);
     return `balls: ${balls}, strikes: ${strikes}, outs: ${outs}`;
   }
   getPitcherStats() {

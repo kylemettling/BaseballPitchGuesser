@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
   pitchGuesses: {
-    type: Array,
+    type: [],
   },
 });
 

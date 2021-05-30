@@ -16,7 +16,7 @@
     <h2><%= `${box.away.name} vs. ${box.home.name}` %></h2>
     <h3><%= `${box.getVenueDetails()}` %></h3>
     <div class="mainCon">
-      <div class="boxCon">
+      <div class="boxCon" data-gameId="<%= box.gameId %>">
         <span class="boxLegend">
           <span class="blank"></span><span class="13">R</span
           ><span class="13">H</span><span class="13">E</span>
@@ -50,7 +50,13 @@
         <div id="12" class="batZone batZoneBottom">12</div>
       </div>
       <div class="atBatDetails">
-        <div class="pitchGuess"><%= pitchGuess %></div>
+        <div class="pitchGuess"><%= userGuess %></div>
+        <div
+          class="pitchNumber"
+          data-sequenceNumber="<%= box.currentPitchNumber %>"
+        >
+          <%= box.currentPitchNumber %>
+        </div>
         <div class="currentPitchZone"><%= box.getCurrentPitchDetails() %></div>
         <div class="currentPitcher">
           Current Pitcher: <%= box.getCurrentPitcher() %>
