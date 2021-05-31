@@ -1,13 +1,8 @@
-// const { default: fetch } = require("node-fetch");
-
 const batZoneItems = document.querySelectorAll(".batZone");
 
 batZoneItems.forEach((item) =>
   item.addEventListener("click", submitZoneChoice)
 );
-// const { sequencenumber } = document.querySelector(".pitchNumber").dataset;
-// const { gameid } = document.querySelector(".boxCon").dataset;
-// console.log(sequencenumber, gameid);
 function submitZoneChoice(e) {
   const { sequencenumber } = document.querySelector(".pitchNumber").dataset;
   const { gameid } = document.querySelector(".boxCon").dataset;
@@ -19,7 +14,11 @@ function submitZoneChoice(e) {
     headers: {
       "content-type": "application/json",
     },
-    body: JSON.stringify({ pitchGuess, sequencenumber, gameid }),
+    body: JSON.stringify({
+      pitchGuess: parseInt(pitchGuess),
+      sequencenumber: parseInt(sequencenumber),
+      gameid,
+    }),
   }).then(window.location.reload());
 }
 

@@ -1,5 +1,3 @@
-const { json } = require("express");
-
 class BoxScore {
   constructor(data) {
     this.data = data;
@@ -36,6 +34,12 @@ class BoxScore {
       ? "Commercial Break!"
       : this.getCurrentAtBat().events[this.getCurrentAtBat().events.length - 1]
           .sequence_number;
+    this.currentPitchZone = !this.getCurrentAtBat().events[
+      this.getCurrentAtBat().events.length - 1
+    ]
+      ? "Commercial Break!"
+      : this.getCurrentAtBat().events[this.getCurrentAtBat().events.length - 1]
+          .mlb_pitch_data.zone;
   }
   generateHomeBox() {
     const homeTeam = this.home;
@@ -63,12 +67,6 @@ class BoxScore {
   }
 
   getCurrentInning() {
-    // this.bottomOrTop = () => {
-    //   return JSON.stringify(this.currentInningInfo.halfs[1].events) ===
-    //     JSON.stringify([])
-    //     ? "Top"
-    //     : "Bot";
-    // };
     this.halfInfo = this.currentInning;
     return `${this.bottomOrTop()} of inning ${this.currentInningNumber}`;
   }
@@ -101,12 +99,9 @@ class BoxScore {
   }
   getCurrentCount() {
     const atBatLength = this.getCurrentAtBat().events.length - 1;
-    const { balls, strikes, outs } =
-      // !this.getCurrentAtBat().events[atBatLength] ||
-      !this.getCurrentAtBat().events[atBatLength].count
-        ? { balls: 0, strikes: 0, outs: () => this.getCurrentOuts() || 0 }
-        : this.getCurrentAtBat().events[atBatLength].count;
-    // console.log(this.getCurrentAtBat().events[atBatLength]);
+    const { balls, strikes, outs } = !this.getCurrentAtBat().events[atBatLength]
+      ? { balls: 0, strikes: 0, outs: () => this.getCurrentOuts() || 0 }
+      : this.getCurrentAtBat().events[atBatLength].count;
     return `balls: ${balls}, strikes: ${strikes}, outs: ${outs}`;
   }
   getPitcherStats() {
@@ -135,14 +130,11 @@ class BoxScore {
     return !currentInfo.events[previousAtBat]
       ? `Top of the Inning`
       : currentInfo.events[previousAtBat].at_bat;
-    // return currentInfo.events[previousAtBat].at_bat.events;
   }
   getPreviousAtBatResult() {
     const previousBatter = this.getPreviousAtBat() || "Top of the inning";
     const previousBatterLastInning = this.getCurrentInning();
     const previousAtBatLength = previousBatter.length - 2;
-    // console.log(previousBatter.description);
-    // console.log(this.bottomOrTop());
     return !previousBatter ? "Top of the inning" : previousBatter.description;
   }
   getCurrentPitchDetails() {
