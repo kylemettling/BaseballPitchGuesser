@@ -1,29 +1,31 @@
 # Baseball Pitch Guesser
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
+While enjoying your favorite baseball games, this app immerses you into the role of the pitcher on the mound. You get to decide where the next pitch will go. Are you and the pitcher on the same page? Fastballs high and in, or breaking balls for the hitter to chase?
+
+**Link to project:** (link to project)
 
 ![alt tag](http://placecorgi.com/1200/650)
 
 ## How It's Made:
 
-**Tech used:** HTML, CSS, JavaScript, Framework of choice
+**Tech used:** HTML, CSS, JavaScript, Node, Express, MongoDB
 
-Here's where you can go to town on how you actually built this thing. Write as much as you can here, it's totally fine if it's not too much just make sure you write _something_. If you don't have too much experience on your resume working on the front end that's totally fine. This is where you can really show off your passion and make up for that ten fold.
+With a Node backend to drive the experience, this app is then structured to use MongoDB for storing necessary data and mixes in a minor amount of client-side JavaScript. Utilizing the [SportRadar API](https://developer.sportradar.com/), this app receives and processes realtime pitch-by-pitch data and presents contextual information to the user. The user is placed into the shoes of the pitcher and submits a next pitch location guess. The server collects the next pitch data and presents how the close the user's guess was to the actual next pitch.
 
 ## Optimizations
 
-The realtime statistic API calls have been reduced from initial implementation to stay under call limits.
+Realtime statistic API calls have been reduced from initial implementation to stay under call limits. Game schedule API call happens when the first user navigates to the app on any given day and is stored for all users.
 
 ## Lessons Learned:
 
-No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those _whoa this is awesome_ or _fuck yeah I did it!_ moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing.
+Taking on the challenge to build an app using play-by-play data and **gamifying** the experience of watching a baseball game was a great opportunity. This project brought about a lot of lessons including but not limited to -- working with large JSON files, Express routing with custom API formation and controlling EJS rendering from user input. In the future, I feel this app is well suited to be transitioned into React. Stay tuned...
 
-## Examples:
+## Keep Exploring:
 
-Take a look at these couple examples that I have in my own portfolio:
+Take a look at these other examples that I have in my portfolio:
 
-**Palettable:** https://github.com/alecortega/palettable
+**Weather App:** https://github.com/kylemettling/weather-app
 
-**Twitter Battle:** https://github.com/alecortega/twitter-battle
+**"NunGram":** https://github.com/kylemettling/theNunGram
 
-**Patch Panel:** https://github.com/alecortega/patch-panel
+**Tic-Tac-Toe:** https://github.com/kylemettling/tic-tac-toe-js
