@@ -18,7 +18,7 @@ Realtime statistic API calls have been reduced from initial implementation to st
 
 ## Lessons Learned:
 
-Taking on the challenge to build an app using play-by-play data and **gamifying** the experience of watching a baseball game was a great opportunity. This project brought about a lot of lessons including but not limited to -- working with large JSON files, Express routing with custom API formation and controlling EJS rendering from user input. In the future, I feel this app is well suited to be transitioned into React. Stay tuned...
+Taking on the challenge to build an app using play-by-play data and _gamifying_ the experience of watching a baseball game was a great opportunity. This project brought about a lot of lessons including but not limited to -- working with large JSON files, Express routing with custom API formation and controlling EJS rendering from user input. In the future, I feel this app is well suited to be transitioned into React. Stay tuned...
 
 ## Keep Exploring:
 
