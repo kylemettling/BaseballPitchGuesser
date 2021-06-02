@@ -33,7 +33,7 @@ module.exports = {
     }
     try {
       const { matchupId } = req.params;
-      // console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
+      console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
       getPitchGuesses();
       await fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
         .then((res) => res.json())
