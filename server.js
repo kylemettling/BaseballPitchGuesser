@@ -14,12 +14,12 @@ const fetch = require("node-fetch");
 const { ensureAuth, ensureGuest } = require("./middleware/auth");
 const methodOverride = require("method-override");
 
-const PORT = 5000;
 // Set date and month
 let today = new Date();
 const { month, day } = { day: today.getDate(), month: today.getMonth() + 1 };
 require("dotenv").config({ path: `${__dirname}/config/process.env` });
 
+const PORT = process.env.PORT || 5000;
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(morgan("dev"));
