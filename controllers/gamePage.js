@@ -50,10 +50,11 @@ module.exports = {
         })
         .then((boxscore) => {
           setTimeout(
-            res.render("gameDetails.ejs", {
-              box: boxscore,
-              userGuess: guessResult,
-            }),
+            () =>
+              res.render("gameDetails.ejs", {
+                box: boxscore,
+                userGuess: guessResult,
+              }),
             1500
           );
         });
