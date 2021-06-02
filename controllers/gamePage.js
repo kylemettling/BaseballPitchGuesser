@@ -23,12 +23,16 @@ module.exports = {
       }
     }
     async function getResults(name) {
-      guessResult = await pitchGuess(
-        currentPitchNumber,
-        currentPitchZone,
-        guesses,
-        name
-      );
+      try {
+        guessResult = await pitchGuess(
+          currentPitchNumber,
+          currentPitchZone,
+          guesses,
+          name
+        );
+      } catch (err) {
+        console.log(err);
+      }
       return guessResult;
     }
     try {
@@ -45,10 +49,13 @@ module.exports = {
           return boxscore;
         })
         .then((boxscore) => {
-          res.render("gameDetails.ejs", {
-            box: boxscore,
-            userGuess: guessResult,
-          });
+          setTimeout(
+            res.render("gameDetails.ejs", {
+              box: boxscore,
+              userGuess: guessResult,
+            }),
+            1500
+          );
         });
     } catch (err) {
       console.log(err);
