@@ -39,25 +39,25 @@ module.exports = {
       const { matchupId } = req.params;
       console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
       getPitchGuesses();
-      await fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
-        .then((res) => res.json())
-        .then((body) => {
-          const boxscore = new BoxScore(body.game);
-          currentPitchNumber = boxscore.currentPitchNumber;
-          currentPitchZone = boxscore.currentPitchZone;
-          getResults(req.user.firstName);
-          return boxscore;
-        })
-        .then((boxscore) => {
-          setTimeout(
-            () =>
+      await setTimeout(
+        () =>
+          fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
+            .then((res) => res.json())
+            .then((body) => {
+              const boxscore = new BoxScore(body.game);
+              currentPitchNumber = boxscore.currentPitchNumber;
+              currentPitchZone = boxscore.currentPitchZone;
+              getResults(req.user.firstName);
+              return boxscore;
+            })
+            .then((boxscore) =>
               res.render("gameDetails.ejs", {
                 box: boxscore,
                 userGuess: guessResult,
-              }),
-            1500
-          );
-        });
+              })
+            ),
+        2000
+      );
     } catch (err) {
       console.log(err);
     }
