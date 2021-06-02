@@ -13,21 +13,29 @@ title {
 }
 .mainCon {
   display: flex;
-  justify-content: center;
-  align-content: center;
+  /* justify-content: space-between; */
+  /* align-content: space-between; */
   text-align: center;
 }
 .boxCon {
   display: inline-flex;
   width: 100vw;
   flex-direction: column;
-  padding-left: 5%;
+  align-items: flex-start;
+  padding-left: 15%;
+}
+.pitchGuessCon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
 }
 .boxLegend,
 .homeBox,
 .awayBox {
   display: flex;
-  padding-left: 15%;
+  /* padding-left: 15%; */
 }
 .blank {
   border: none !important;
@@ -44,75 +52,79 @@ title {
 }
 .currentInning {
 }
+.gameDetails {
+  display: flex;
+  font-size: 24px;
+  /* align-items: flex-end; */
+  padding-right: 15%;
+  flex-direction: column;
+  text-align: center;
+  align-content: space-between;
+  justify-content: space-between;
+}
 .atBatDetails {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
   font-size: 24px;
-  padding-right: 5%;
+  /* padding-right: 5%; */
 }
 .batZoneContainer {
   /* border: 2px solid black; */
+  /* display: flex; */
+  flex-direction: column;
   text-align: center;
   align-items: center;
   align-content: center;
-  height: 300px;
-  /* width: 600px; */
+  justify-content: center;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr, 3fr, 1fr;
+  grid-template-rows: 1fr, 3fr, 1fr;
 }
 .centerZone {
-  /* grid-area: 2 / 2 / 4 / 4; */
   grid-area: 2 / 2/ 2/ 2;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 5px;
-  /* grid-area: auto; */
-  align-content: center;
-  align-items: center;
-  text-align: center;
   display: grid;
+  width: 210px;
+  height: 240px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
 .centerZone div {
-  /* font-weight: bold; */
   border-radius: 5%;
   display: flex;
-  text-align: center;
-  align-content: center;
-  height: 60px;
-  width: 50px;
+  width: 70px;
+  height: 80px;
 }
 .batZoneTop {
-  grid-column: 1 / span 3;
+  grid-column: 2;
   grid-row: 1;
+  align-self: flex-end;
 }
 .batZoneBottom {
-  grid-column: 1 / span 3;
+  grid-column: 2;
   grid-row: 3;
+  align-self: flex-start;
 }
 .batZoneLeft {
   grid-column: 1;
-  grid-row: 1 / span 3;
+  grid-row: span 3;
+  justify-self: flex-end;
+  align-self: center;
 }
 .batZoneRight {
   grid-column: 3;
   grid-row: 1 / span 3;
+  justify-self: flex-start;
+  align-self: center;
 }
 .batZone:hover {
   cursor: crosshair;
 }
-/* .batZoneContainer {
-  border: 2px solid black;
-  text-align: center;
-  align-items: center;
-  align-content: center;
-  height: 550px;
-  width: 680px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-} */
 .pitchIndicator {
   background-color: rgba(131, 42, 42, 0.75);
 }

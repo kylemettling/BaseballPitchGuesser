@@ -1,16 +1,14 @@
 module.exports = async function pitchGuess(
-  sequenceNumber,
+  sequence,
   pitchZone,
-  userGuesses
+  userGuesses,
+  name
 ) {
-  // const { pitchGuesses } = userGuesses;
-  // console.log(guesses);
-  // console.log(`guesses: ${userGuesses}`);
-  // const currentGuess = userGuesses.filter(
-  //   (item) => item.sequenceNumber === sequenceNumber
-  // );
-  // console.log(
-  //   userGuesses.filter((item) => item.sequenceNumber === sequenceNumber)
-  // );
-  return sequenceNumber, pitchZone, userGuesses;
+  const currentGuess = userGuesses.filter(
+    (item) => item.pitchGuess === pitchZone && item.sequencenumber === sequence
+  );
+  const result = !currentGuess.length
+    ? `Not this time ${name}, you missed the location!`
+    : `Woo!! Well placed, ${name}! Correct Zone :)`;
+  return result;
 };

@@ -41,3 +41,18 @@ h3 {
   color: red;
   transform: scale(1.1);
 }
+.login {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-self: center;
+}
+#loginGoogle {
+  font-size: 30px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  /* margin: 5%; */
+  width: 18rem;
+}

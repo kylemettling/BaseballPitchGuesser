@@ -6,17 +6,30 @@ const pitchGuess = require("../services/pitchGuess");
 
 module.exports = {
   getGamePage: async (req, res) => {
-    let guesses;
+    let guesses,
+      currentPitchNumber,
+      currentPitchZone,
+      filteredGuesses,
+      guessResult;
     async function getPitchGuesses() {
       try {
         await User.findById(req.user.id)
           .lean()
           .then((body) => {
-            guesses = JSON.stringify(body.pitchGuesses);
+            guesses = body.pitchGuesses;
           });
       } catch (err) {
         console.log(err);
       }
+    }
+    async function getResults(name) {
+      guessResult = await pitchGuess(
+        currentPitchNumber,
+        currentPitchZone,
+        guesses,
+        name
+      );
+      return guessResult;
     }
     try {
       const { matchupId } = req.params;
@@ -26,33 +39,23 @@ module.exports = {
         .then((res) => res.json())
         .then((body) => {
           const boxscore = new BoxScore(body.game);
-          const { currentPitchNumber, currentPitchZone } = boxscore;
-          console.log(guesses);
+          currentPitchNumber = boxscore.currentPitchNumber;
+          currentPitchZone = boxscore.currentPitchZone;
+          getResults(req.user.firstName);
+          return boxscore;
+        })
+        .then((boxscore) => {
           res.render("gameDetails.ejs", {
             box: boxscore,
-            userGuess: guesses,
+            userGuess: guessResult,
           });
         });
     } catch (err) {
       console.log(err);
     }
-    // function getPitchGuesses() {
-    //   try {
-    //     const guesses = User.findById(req.user.id)
-    //       .lean()
-    //       .then((body) => {
-    //         console.log(body.pitchGuesses);
-    //         return body.pitchGuesses;
-    //       });
-    //     return guesses;
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
   },
   postZoneChoice: async (req, res) => {
     const { pitchGuess, gameid, sequencenumber } = await req.body;
-    console.log(pitchGuess, gameid, sequencenumber);
     try {
       await User.findOneAndUpdate(
         { _id: req.user.id },
@@ -67,11 +70,9 @@ module.exports = {
     }
   },
   getUserGuesses: async (req, res) => {
-    const guesses = User.findById(req.user.id)
+    User.findById(req.user.id)
       .lean()
       .then((data) => {
-        console.log(data.pitchGuesses);
-        // return data.pitchGuesses;
         res.json(data.pitchGuesses);
       })
       .catch((err) => console.log(err));

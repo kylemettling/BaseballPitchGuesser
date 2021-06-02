@@ -4,7 +4,7 @@ While enjoying your favorite baseball games, this app immerses you into the role
 
 **Link to project:** (link to project)
 
-![alt tag](http://placecorgi.com/1200/650)
+![alt tag](screen.png)
 
 ## How It's Made:
 
