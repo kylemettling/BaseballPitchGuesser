@@ -2,7 +2,7 @@
 
 While enjoying your favorite baseball games, this app immerses you into the role of the pitcher on the mound. You get to decide where the next pitch will go. Are you and the pitcher on the same page? Fastballs high and in, or breaking balls for the hitter to chase?
 
-**Link to project:** (link to project)
+[Live](https://baseball-pitch-guesser.herokuapp.com/) on Heroku
 
 ![alt tag](screen.png)
 
