@@ -30,20 +30,17 @@
         </span>
       </div>
       <section class='gameDetails'>
-      <div class="currentPitchZone">
-        <%= box.getCurrentPitchDetails() %>
-      </div>
-      <div class="currentPitcher">
+      <div>
         Current Pitcher: <%= box.getCurrentPitcher() %>
       </div>
-      <div class="currentHitter">
+      <div>
         Current Batter: <%= box.getCurrentBatter() %>
       </div>
-      <div class="currentInning">
-        Half info: <%= box.getCurrentInning() %>
+      <div>
+        Inning: <%= box.getCurrentInning() %>
       </div>
       <div class="currentInning">Count: <%= box.getCurrentCount() %></div>
-      <div class="currentInning">
+      <div class="pitchDetails">
         Pitch Details: <%= box.getPitcherStats() %>
       </div>
     </section>

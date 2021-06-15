@@ -4,11 +4,16 @@ module.exports = async function pitchGuess(
   userGuesses,
   name
 ) {
-  const currentGuess = userGuesses.filter(
+  const correctGuess = userGuesses.filter(
     (item) => item.pitchGuess === pitchZone && item.sequencenumber === sequence
   );
-  const result = !currentGuess.length
-    ? `Not this time ${name}, you missed the location!`
-    : `Woo!! Well placed, ${name}! Correct Zone :)`;
+  const currentGuess = userGuesses.filter(
+    (item) => item.sequencenumber === sequence
+  )[0].pitchGuess;
+  const result = !correctGuess.length
+    ? `Not this time ${name}, your selection of ${
+        currentGuess || ""
+      } missed the location!`
+    : `Wow!! Well done, ${name}! Correct Guess!`;
   return result;
 };
