@@ -2,6 +2,7 @@ const fetch = require("node-fetch");
 const { PLAYBYPLAY_ENDPOINT } = require("../config/endpoints");
 const BoxScore = require("../services/boxscore");
 const User = require("../models/User");
+// const PitchGuess = require("../models/PitchGuess");
 const pitchGuess = require("../services/pitchGuess");
 
 module.exports = {
@@ -12,11 +13,13 @@ module.exports = {
       filteredGuesses,
       guessResult;
     async function getPitchGuesses() {
+      // console.log(req.body);
       try {
         await User.findById(req.user.id)
           .lean()
           .then((body) => {
-            guesses = body.pitchGuesses;
+            // console.log(body.pitchGuesses);
+            guesses = body.pitchGuesses[body.pitchGuesses.length - 1];
           });
       } catch (err) {
         console.log(err);
@@ -24,11 +27,13 @@ module.exports = {
     }
     async function getResults(name) {
       try {
+        const { matchupId } = req.params;
         guessResult = await pitchGuess(
           currentPitchNumber,
           currentPitchZone,
-          guesses,
-          name
+          await guesses,
+          name,
+          matchupId
         );
       } catch (err) {
         console.log(err);
@@ -37,7 +42,7 @@ module.exports = {
     }
     try {
       const { matchupId } = req.params;
-      console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
+      // console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
       getPitchGuesses();
       await setTimeout(
         () =>
@@ -47,6 +52,7 @@ module.exports = {
               const boxscore = new BoxScore(body.game);
               currentPitchNumber = boxscore.currentPitchNumber;
               currentPitchZone = boxscore.currentPitchZone;
+              // console.log(currentPitchNumber, currentPitchZone);
               getResults(req.user.firstName);
               return boxscore;
             })
@@ -56,23 +62,56 @@ module.exports = {
                 userGuess: guessResult,
               })
             ),
-        2000
+        1000
       );
     } catch (err) {
       console.log(err);
     }
   },
   postZoneChoice: async (req, res) => {
-    const { pitchGuess, gameid, sequencenumber } = await req.body;
+    const { matchupId } = req.params;
+    // const { pitchGuess, gameid, sequencenumber } = await req.body;
+    // const { pitchGuess, gameid } = JSON.stringify(req.body);
+    const getCurrentPitch = await fetch(
+      PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId)
+    )
+      .then((res) => res.json())
+      .then((body) => {
+        const boxscore = new BoxScore(body.game);
+        currentPitchNumber = boxscore.currentPitchNumber;
+        currentPitchZone = boxscore.currentPitchZone;
+        // console.log(currentPitchNumber, currentPitchZone);
+        // getResults(req.user.firstName);
+        return boxscore.currentPitchNumber;
+      });
+    // .then(
+    //   (boxscore) =>
+    //   res.render("gameDetails.ejs", {
+    //     box: boxscore,
+    //     userGuess: guessResult,
+    //   })
+    // );
+    console.log(`current pitch: ${await getCurrentPitch}`);
     try {
+      const { pitchGuess, gameid } = req.body;
+      // console.log(`body: ${JSON.stringify(req.body)}`);
+      // console.log([pitchGuess, await getCurrentPitch, gameid]);
+      // const {}
       await User.findOneAndUpdate(
         { _id: req.user.id },
         {
           $push: {
-            pitchGuesses: req.body,
+            pitchGuesses: {
+              pitchGuess: pitchGuess,
+              sequencenumber: await getCurrentPitch,
+              gameid,
+            },
+            // pitchGuesses: req.body,
           },
-        }
+        },
+        { new: true }
       );
+      res.redirect("back");
     } catch (err) {
       console.log(err);
     }

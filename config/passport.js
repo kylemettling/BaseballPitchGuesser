@@ -1,6 +1,7 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const mongoose = require("mongoose");
 const User = require("../models/User");
+const PitchGuess = require("../models/PitchGuess");
 
 // TODO: Set up google cloud console so below code will work
 module.exports = (passport) => {

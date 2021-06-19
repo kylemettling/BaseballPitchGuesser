@@ -102,7 +102,7 @@ class BoxScore {
     const { balls, strikes, outs } = !this.getCurrentAtBat().events[atBatLength]
       ? { balls: 0, strikes: 0, outs: () => this.getCurrentOuts() || 0 }
       : this.getCurrentAtBat().events[atBatLength].count;
-    return `balls: ${balls}, strikes: ${strikes}, outs: ${outs}`;
+    return `${balls} - ${strikes}, ${outs} ${outs === 1 ? "out" : "outs"}`;
   }
   getPitcherStats() {
     const atBatLength = this.getCurrentAtBat().events.length - 1;
@@ -111,7 +111,8 @@ class BoxScore {
     ]
       ? { speed: 0, zone: "N/A", code: "N/A", description: "No Pitch Data" }
       : this.getCurrentAtBat().events[atBatLength].mlb_pitch_data;
-    return `speed: ${speed}, zone: ${zone}, code: ${code}, description: ${description}`;
+    // return `speed: ${speed}, zone: ${zone}, code: ${code}, description: ${description}`;
+    return `${description} ${Math.round(speed)} mph`;
   }
 
   getCurrentOuts() {

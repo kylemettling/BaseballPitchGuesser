@@ -19,16 +19,17 @@ function submitZoneChoice(e) {
       sequencenumber: parseInt(sequencenumber),
       gameid,
     }),
-  }).then(window.location.reload());
+  }).then(setTimeout(window.location.reload(), 1500));
 }
 
 async function getCurrentPitch() {
-  const currentPitch = await document.querySelector(".currentPitchZone");
+  let currentPitch = await document.querySelector(".currentPitchZone");
+  currentPitch = currentPitch.innerHTML.split(" ");
+  currentPitch = currentPitch[currentPitch.length - 1];
+  console.log(currentPitch);
   const rawZoneItems = document.querySelectorAll(".batZone");
   let zoneItems = [...rawZoneItems];
-  zoneItems = zoneItems.filter(
-    (a) => Number(a.id) === Number(currentPitch.innerHTML)
-  );
+  zoneItems = zoneItems.filter((a) => Number(a.id) === Number(currentPitch));
   zoneItems.forEach((a) => a.classList.add("pitchIndicator"));
 }
 getCurrentPitch();
