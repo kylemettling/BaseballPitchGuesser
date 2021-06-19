@@ -116,7 +116,7 @@ module.exports = {
         },
         { new: true }
       );
-      // res.redirect("back");
+      res.redirect(`/game/${matchupId}`);
     } catch (err) {
       console.log(err);
     }

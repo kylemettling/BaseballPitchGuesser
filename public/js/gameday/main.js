@@ -20,14 +20,14 @@ function submitZoneChoice(e) {
         sequencenumber: parseInt(sequencenumber),
         gameid,
       }),
-    }).then(window.location.reload());
+    }).then((res) => window.location.reload());
   } catch (err) {
     console.log(err);
   }
 }
 
 async function getCurrentPitch() {
-  let currentPitch = document.querySelector(".currentPitchZone");
+  let currentPitch = await document.querySelector(".currentPitchZone");
   currentPitch = currentPitch.innerHTML.split(" ");
   currentPitch = currentPitch[currentPitch.length - 1];
   console.log(currentPitch);
