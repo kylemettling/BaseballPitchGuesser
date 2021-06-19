@@ -38,32 +38,37 @@ module.exports = {
       } catch (err) {
         console.log(err);
       }
+      // console.log(guessResult);
       return guessResult;
     }
     try {
       const { matchupId } = req.params;
       // console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
       getPitchGuesses();
-      await setTimeout(
-        () =>
-          fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
-            .then((res) => res.json())
-            .then((body) => {
-              const boxscore = new BoxScore(body.game);
-              currentPitchNumber = boxscore.currentPitchNumber;
-              currentPitchZone = boxscore.currentPitchZone;
-              // console.log(currentPitchNumber, currentPitchZone);
-              getResults(req.user.firstName);
-              return boxscore;
-            })
-            .then((boxscore) =>
-              res.render("gameDetails.ejs", {
-                box: boxscore,
-                userGuess: guessResult,
-              })
-            ),
-        1000
-      );
+      // console.log(guessResult);
+      // await setTimeout(
+      //   () =>
+      fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
+        .then((res) => res.json())
+        .then((body) => {
+          const boxscore = new BoxScore(body.game);
+          currentPitchNumber = boxscore.currentPitchNumber;
+          currentPitchZone = boxscore.currentPitchZone;
+          // console.log(currentPitchNumber, currentPitchZone);
+          getResults(req.user.firstName);
+
+          // console.log(guessResult, req.user.firstName);
+          return boxscore;
+        })
+        .then(async (boxscore, name) =>
+          res.render("gameDetails.ejs", {
+            box: boxscore,
+            // userGuess: guessResult,
+            userGuess: await getResults(name),
+          })
+        );
+      //   1000
+      // );
     } catch (err) {
       console.log(err);
     }
@@ -111,7 +116,7 @@ module.exports = {
         },
         { new: true }
       );
-      res.redirect("back");
+      // res.redirect("back");
     } catch (err) {
       console.log(err);
     }

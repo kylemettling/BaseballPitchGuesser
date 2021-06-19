@@ -9,21 +9,25 @@ function submitZoneChoice(e) {
   // console.log(sequencenumber, gameid);
   const testing = "TESTING";
   const pitchGuess = e.target.id;
-  fetch(`${window.location.href}`, {
-    method: "post",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      pitchGuess: parseInt(pitchGuess),
-      sequencenumber: parseInt(sequencenumber),
-      gameid,
-    }),
-  }).then(setTimeout(window.location.reload(), 1500));
+  try {
+    fetch(`${window.location.href}`, {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        pitchGuess: parseInt(pitchGuess),
+        sequencenumber: parseInt(sequencenumber),
+        gameid,
+      }),
+    }).then(window.location.reload());
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function getCurrentPitch() {
-  let currentPitch = await document.querySelector(".currentPitchZone");
+  let currentPitch = document.querySelector(".currentPitchZone");
   currentPitch = currentPitch.innerHTML.split(" ");
   currentPitch = currentPitch[currentPitch.length - 1];
   console.log(currentPitch);

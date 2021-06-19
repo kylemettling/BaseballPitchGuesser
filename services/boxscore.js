@@ -37,7 +37,7 @@ class BoxScore {
     this.currentPitchZone = !this.getCurrentAtBat().events[
       this.getCurrentAtBat().events.length - 1
     ]
-      ? "Commercial Break!"
+      ? null
       : this.getCurrentAtBat().events[this.getCurrentAtBat().events.length - 1]
           .mlb_pitch_data.zone;
   }
