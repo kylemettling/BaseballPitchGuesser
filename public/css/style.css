@@ -5,7 +5,10 @@
   font-family: "Varela Round", sans-serif;
 }
 body {
-  background-color: lightblue;
+  background: url("/bg.jpg");
+  background-size: cover;
+  height: 100vh;
+  /* background-color: lightblue; */
 }
 h1 {
   font-size: 40px;
@@ -25,21 +28,38 @@ h3 {
   padding: 1rem 0;
 }
 .gamesList {
-  display: flex;
+  /* display: flex; */
+  /* justify-self: center;
   flex-direction: column;
+  align-content: center; */
+  /* align-items: ; */
+}
+.gameCon {
+  /* display: flex; */
+  border-radius: 40px 0 40px 0;
+  /* border-bottom: 4px; */
+  width: 500px;
+  /* align-content: center; */
+  background-color: rgba(0, 0, 0, 0.75);
+  /* justify-content: center; */
+  /* flex-direction: column; */
 }
 .game {
   font-size: 24px;
-  padding: 0.25rem 0;
+  padding: 0.45rem 0;
   display: flex;
   justify-content: center;
+  justify-self: center;
+  align-self: center;
   /* text-align: center; */
 }
 .gameLink {
   text-decoration: none;
+  color: rgb(136, 104, 0);
 }
 .gameLink:hover {
-  color: red;
+  color: rgb(0, 100, 8);
+  font-weight: 700;
   transform: scale(1.1);
 }
 .login {

@@ -10,17 +10,17 @@
   <body>
     <h1>Baseball Pitch Guesser</h1>
     <h3>Today's Schedule</h3>
-
-    <ul class="gamesList">
-      <% for(i = 0; i < matchups.length; i++) { %>
-      <li class="game">
-        <a class="gameLink" href="game/<%= gameLinks[i] %>"
-          ><%= matchups[i] %></a
-        >
-      </li>
-      <% } %>
-    </ul>
-
+    <div class="gameCon">
+      <ul class="gamesList">
+        <% for(i = 0; i < matchups.length; i++) { %>
+        <li class="game">
+          <a class="gameLink" href="game/<%= gameLinks[i] %>"
+            ><%= matchups[i] %></a
+          >
+        </li>
+        <% } %>
+      </ul>
+    </div>
     <script src="js/main.js"></script>
   </body>
 </html>
