@@ -174,7 +174,52 @@ title {
 }
 /* Media Queries */
 
-@media all and (max-width: 1028px) {
+@media all and (min-width: 1024px) and (max-width: 1280px) {
+  .mainCon {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+  }
+  .boxCon {
+    justify-content: center;
+    padding-bottom: 2%;
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .mainCon {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+  }
+  .boxCon {
+    justify-content: center;
+    padding-bottom: 2%;
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+  .mainCon {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+  }
+  .boxCon {
+    justify-content: center;
+    padding-bottom: 2%;
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+@media all and (max-width: 480px) {
   .mainCon {
     flex-direction: column;
     align-items: center;

@@ -38,10 +38,10 @@ module.exports = {
       }
       return guessResult;
     }
+    const { matchupId } = req.params;
+    console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
+    getPitchGuesses();
     try {
-      const { matchupId } = req.params;
-      console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
-      getPitchGuesses();
       fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
         .then((res) => res.json())
         .then((body) => {
