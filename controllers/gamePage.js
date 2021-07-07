@@ -70,12 +70,12 @@ module.exports = {
       .then((res) => res.json())
       .then((body) => {
         const boxscore = new BoxScore(body.game);
-        currentPitchNumber = boxscore.currentPitchNumber;
-        currentPitchZone = boxscore.currentPitchZone;
+        // currentPitchNumber = boxscore.currentPitchNumber;
+        // currentPitchZone = boxscore.currentPitchZone;
         return boxscore.currentPitchNumber;
       })
       .catch((err) => console.log(err));
-    console.log(`current pitch: ${await getCurrentPitch}`);
+    // console.log(`current pitch: ${await getCurrentPitch}`);
     try {
       const { pitchGuess, gameid } = req.body;
       await User.findOneAndUpdate(
@@ -84,7 +84,7 @@ module.exports = {
           $push: {
             pitchGuesses: {
               pitchGuess: pitchGuess,
-              sequencenumber: await getCurrentPitch,
+              sequencenumber: getCurrentPitch,
               gameid,
             },
           },
