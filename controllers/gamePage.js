@@ -87,8 +87,9 @@ module.exports = {
               gameid,
             },
           },
-        },
-        { new: true }
+        }
+        // ,
+        // { new: true }
       );
       res.redirect(`/game/${matchupId}`);
     } catch (err) {
