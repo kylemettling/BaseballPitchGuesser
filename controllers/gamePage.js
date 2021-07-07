@@ -63,21 +63,27 @@ module.exports = {
     }
   },
   postZoneChoice: async (req, res) => {
-    const { matchupId } = req.params;
-    const getCurrentPitch = await fetch(
-      PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId)
-    )
-      .then((data) => data.json())
-      .then((body) => {
-        const boxscore = new BoxScore(body.game);
-        // currentPitchNumber = boxscore.currentPitchNumber;
-        // currentPitchZone = boxscore.currentPitchZone;
-        return boxscore.currentPitchNumber;
-      })
-      .catch((err) => console.log(err));
-    // console.log(`current pitch: ${await getCurrentPitch}`);
+    let getCurrentPitch;
+    try {
+      const { matchupId } = req.params;
+      getCurrentPitch = await fetch(
+        PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId)
+      )
+        .then((data) => data.json())
+        .then((body) => {
+          const boxscore = new BoxScore(body.game);
+          // currentPitchNumber = boxscore.currentPitchNumber;
+          // currentPitchZone = boxscore.currentPitchZone;
+          return boxscore.currentPitchNumber;
+        })
+        .catch((err) => console.log(err));
+      // console.log(`current pitch: ${await getCurrentPitch}`);
+    } catch (err) {
+      console.log(err);
+    }
     try {
       const { pitchGuess, gameid } = req.body;
+      const { matchupId } = req.params;
       await User.findOneAndUpdate(
         { _id: req.user.id },
         {
