@@ -83,7 +83,6 @@ module.exports = {
     }
     try {
       const { pitchGuess, gameid } = req.body;
-      const { matchupId } = req.params;
       await User.findOneAndUpdate(
         { _id: req.user.id },
         {
@@ -98,10 +97,11 @@ module.exports = {
         // ,
         // { new: true }
       );
-      res.redirect(`/game/${matchupId}`);
     } catch (err) {
       console.log(err);
     }
+    const { matchupId } = req.params;
+    res.redirect(`/game/${matchupId}`);
   },
   getUserGuesses: async (req, res) => {
     User.findById(req.user.id)
