@@ -73,7 +73,8 @@ module.exports = {
         currentPitchNumber = boxscore.currentPitchNumber;
         currentPitchZone = boxscore.currentPitchZone;
         return boxscore.currentPitchNumber;
-      });
+      })
+      .catch((err) => console.log(err));
     console.log(`current pitch: ${await getCurrentPitch}`);
     try {
       const { pitchGuess, gameid } = req.body;
