@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node --trace-warnings server.js",
     "dev": "nodemon server.js"
   },
   "author": "",
