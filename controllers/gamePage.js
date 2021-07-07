@@ -4,6 +4,7 @@ const BoxScore = require("../services/boxscore");
 const User = require("../models/User");
 // const PitchGuess = require("../models/PitchGuess");
 const pitchGuess = require("../services/pitchGuess");
+const { post } = require("../routes/home");
 
 module.exports = {
   getGamePage: async (req, res) => {
@@ -64,6 +65,27 @@ module.exports = {
   },
   postZoneChoice: async (req, res) => {
     let getCurrentPitch;
+    async function postUpdate(req, currentPitch) {
+      try {
+        const { pitchGuess, gameid } = req.body;
+        await User.findOneAndUpdate(
+          { _id: req.user.id },
+          {
+            $push: {
+              pitchGuesses: {
+                pitchGuess: pitchGuess,
+                sequencenumber: currentPitch,
+                gameid,
+              },
+            },
+          }
+          // ,
+          // { new: true }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
     try {
       const { matchupId } = req.params;
       getCurrentPitch = await fetch(
@@ -72,36 +94,15 @@ module.exports = {
         .then((data) => data.json())
         .then((body) => {
           const boxscore = new BoxScore(body.game);
-          // currentPitchNumber = boxscore.currentPitchNumber;
-          // currentPitchZone = boxscore.currentPitchZone;
-          return boxscore.currentPitchNumber;
+          // return boxscore.currentPitchNumber;
+          postUpdate(req, boxscore.currentPitchNumber);
+          const { matchupId } = req.params;
+          res.redirect(`/game/${matchupId}`);
         })
         .catch((err) => console.log(err));
-      // console.log(`current pitch: ${await getCurrentPitch}`);
     } catch (err) {
       console.log(err);
     }
-    try {
-      const { pitchGuess, gameid } = req.body;
-      await User.findOneAndUpdate(
-        { _id: req.user.id },
-        {
-          $push: {
-            pitchGuesses: {
-              pitchGuess: pitchGuess,
-              sequencenumber: getCurrentPitch,
-              gameid,
-            },
-          },
-        }
-        // ,
-        // { new: true }
-      );
-    } catch (err) {
-      console.log(err);
-    }
-    const { matchupId } = req.params;
-    res.redirect(`/game/${matchupId}`);
   },
   getUserGuesses: async (req, res) => {
     User.findById(req.user.id)
