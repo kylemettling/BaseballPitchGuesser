@@ -9,6 +9,7 @@ function submitZoneChoice(e) {
   // console.log(sequencenumber, gameid);
   const testing = "TESTING";
   const pitchGuess = e.target.id;
+  console.log(`Seq: ${sequencenumber}, Id: ${gameid}, Guess: ${pitchGuess}`);
   try {
     fetch(`${window.location.href}`, {
       method: "post",
