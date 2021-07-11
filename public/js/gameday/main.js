@@ -22,7 +22,7 @@ function submitZoneChoice(e) {
         gameid,
       }),
     })
-      // .then((res) => window.location.reload())
+      .then((res) => window.location.reload())
       .catch((err) => console.log(err));
   } catch (err) {
     console.log(err);
