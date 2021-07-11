@@ -32,7 +32,6 @@ function submitZoneChoice(e) {
       // .then((res) => res.end())
       .then((res) => {
         console.log(res);
-        console.log(req);
         console.log(window.location.href);
         // fetch(window.location.href);
         // console.log("=== YES RELOADING ===");
