@@ -105,9 +105,10 @@ module.exports = {
           // res.redirect(`/game/${matchupId}`);
           // return matchupId;
           // res.render(`/game/${matchupId}`);
-          // res.sendStatus(200);
+          console.log(`=== Sending status ===`);
+          res.sendStatus(200);
           // res.render("Hello");
-          res.end();
+          // res.end();
         })
         .catch((err) => console.log(err));
     } catch (err) {
