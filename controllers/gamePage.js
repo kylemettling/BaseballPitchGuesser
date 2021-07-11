@@ -92,7 +92,10 @@ module.exports = {
       getCurrentPitch = await fetch(
         PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId)
       )
-        .then((data) => data.json())
+        .then((data) => {
+          console.log(data);
+          return data.json();
+        })
         .then((body) => {
           const boxscore = new BoxScore(body.game);
           // return boxscore.currentPitchNumber;
