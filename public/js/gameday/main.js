@@ -16,6 +16,7 @@ function submitZoneChoice(e) {
     gameid,
   });
   console.log(theBody);
+  console.log(req.user);
   try {
     fetch(`${window.location.href}`, {
       method: "post",
