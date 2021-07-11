@@ -65,6 +65,7 @@ module.exports = {
   },
   postZoneChoice: async (req, res) => {
     let getCurrentPitch;
+    console.log(`=== REQUESTING USER: ${req.user} ===`);
     async function postUpdate(req, currentPitch) {
       try {
         const { pitchGuess, gameid } = req.body;
@@ -93,18 +94,20 @@ module.exports = {
         PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId)
       )
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           return data.json();
         })
         .then((body) => {
           const boxscore = new BoxScore(body.game);
           // return boxscore.currentPitchNumber;
-          postUpdate(req, boxscore.currentPitchNumber);
           const { matchupId } = req.params;
+          postUpdate(req, boxscore.currentPitchNumber);
+          // res.redirect(`/game/${matchupId}`);
           // return matchupId;
           // res.render(`/game/${matchupId}`);
-          // res.redirect(`/game/${matchupId}`);
-          res.sendStatus(200);
+          // res.sendStatus(200);
+          // res.render("Hello");
+          res.end();
         })
         .catch((err) => console.log(err));
     } catch (err) {
