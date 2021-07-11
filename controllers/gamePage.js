@@ -98,8 +98,9 @@ module.exports = {
           // return boxscore.currentPitchNumber;
           postUpdate(req, boxscore.currentPitchNumber);
           const { matchupId } = req.params;
-          res.redirect(`/game/${matchupId}`);
+          // return matchupId;
           // res.render(`/game/${matchupId}`);
+          res.redirect(`/game/${matchupId}`);
         })
         .catch((err) => console.log(err));
     } catch (err) {
