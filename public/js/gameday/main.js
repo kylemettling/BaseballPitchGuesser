@@ -31,7 +31,9 @@ function submitZoneChoice(e) {
     })
       // .then((res) => res.end())
       .then((res) => {
-        console.log("=== YES RELOADING ===");
+        console.log(res);
+        // fetch(window.location.href);
+        // console.log("=== YES RELOADING ===");
         window.location.reload();
       })
       .catch((err) => console.log(err));
