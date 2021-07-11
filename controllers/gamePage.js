@@ -65,7 +65,7 @@ module.exports = {
   },
   postZoneChoice: async (req, res) => {
     let getCurrentPitch;
-    console.log(`=== REQUESTING USER: ${req.user} ===`);
+    // console.log(`=== REQUESTING USER: ${req.user} ===`);
     async function postUpdate(req, currentPitch) {
       try {
         const { pitchGuess, gameid } = req.body;
