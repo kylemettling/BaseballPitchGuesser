@@ -23,7 +23,7 @@ function submitZoneChoice(e) {
       }),
     })
       .then((res) => window.location.reload())
-      .then((err) => console.log(err));
+      .catch((err) => console.log(err));
   } catch (err) {
     console.log(err);
   }
