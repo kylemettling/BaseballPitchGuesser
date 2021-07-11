@@ -69,7 +69,7 @@ module.exports = {
     async function postUpdate(req, currentPitch) {
       try {
         const { pitchGuess, gameid } = req.body;
-        console.log(`POST UPDATE: ${currentPitch}`);
+        console.log(`POST UPDATE: ${currentPitch} ${pitchGuess}`);
         await User.findOneAndUpdate(
           { _id: req.user.id },
           {
@@ -97,11 +97,11 @@ module.exports = {
           // console.log(data);
           return data.json();
         })
-        .then((body) => {
+        .then(async (body) => {
           const boxscore = new BoxScore(body.game);
           // return boxscore.currentPitchNumber;
           const { matchupId } = req.params;
-          postUpdate(req, boxscore.currentPitchNumber);
+          await postUpdate(req, boxscore.currentPitchNumber);
           // res.redirect(`/game/${matchupId}`);
           // return matchupId;
           // res.render(`/game/${matchupId}`);
