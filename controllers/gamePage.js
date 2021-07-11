@@ -68,6 +68,7 @@ module.exports = {
     async function postUpdate(req, currentPitch) {
       try {
         const { pitchGuess, gameid } = req.body;
+        console.log(`POST UPDATE: ${currentPitch}`);
         await User.findOneAndUpdate(
           { _id: req.user.id },
           {
@@ -98,6 +99,7 @@ module.exports = {
           postUpdate(req, boxscore.currentPitchNumber);
           const { matchupId } = req.params;
           res.redirect(`/game/${matchupId}`);
+          // res.render(`/game/${matchupId}`);
         })
         .catch((err) => console.log(err));
     } catch (err) {

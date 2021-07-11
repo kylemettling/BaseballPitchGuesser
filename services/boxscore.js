@@ -31,7 +31,7 @@ class BoxScore {
     this.currentPitchNumber = !this.getCurrentAtBat().events[
       this.getCurrentAtBat().events.length - 1
     ]
-      ? "Commercial Break!"
+      ? 0
       : this.getCurrentAtBat().events[this.getCurrentAtBat().events.length - 1]
           .sequence_number;
     this.currentPitchZone = !this.getCurrentAtBat().events[
