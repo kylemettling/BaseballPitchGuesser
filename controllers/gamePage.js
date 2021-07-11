@@ -100,7 +100,8 @@ module.exports = {
           const { matchupId } = req.params;
           // return matchupId;
           // res.render(`/game/${matchupId}`);
-          res.redirect(`/game/${matchupId}`);
+          // res.redirect(`/game/${matchupId}`);
+          res.sendStatus(200);
         })
         .catch((err) => console.log(err));
     } catch (err) {

@@ -10,20 +10,30 @@ function submitZoneChoice(e) {
   const testing = "TESTING";
   const pitchGuess = e.target.id;
   console.log(`Seq: ${sequencenumber}, Id: ${gameid}, Guess: ${pitchGuess}`);
+  const theBody = JSON.stringify({
+    pitchGuess: parseInt(pitchGuess),
+    sequencenumber: parseInt(sequencenumber),
+    gameid,
+  });
+  console.log(theBody);
   try {
     fetch(`${window.location.href}`, {
       method: "post",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({
-        pitchGuess: parseInt(pitchGuess),
-        sequencenumber: parseInt(sequencenumber),
-        gameid,
-      }),
+      body: theBody,
+      // body: JSON.stringify({
+      //   pitchGuess: parseInt(pitchGuess),
+      //   sequencenumber: parseInt(sequencenumber),
+      //   gameid,
+      // }),
     })
       // .then((res) => res.end())
-      .then((res) => window.location.reload())
+      .then((res) => {
+        console.log("=== YES RELOADING ===");
+        window.location.reload();
+      })
       .catch((err) => console.log(err));
   } catch (err) {
     console.log(err);
