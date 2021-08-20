@@ -94,21 +94,14 @@ module.exports = {
         PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId)
       )
         .then((data) => {
-          // console.log(data);
           return data.json();
         })
         .then(async (body) => {
           const boxscore = new BoxScore(body.game);
-          // return boxscore.currentPitchNumber;
           const { matchupId } = req.params;
           await postUpdate(req, boxscore.currentPitchNumber);
-          // res.redirect(`/game/${matchupId}`);
-          // return matchupId;
-          // res.render(`/game/${matchupId}`);
           console.log(`=== Sending status ===`);
           res.sendStatus(200);
-          // res.render("Hello");
-          // res.end();
         })
         .catch((err) => console.log(err));
     } catch (err) {
