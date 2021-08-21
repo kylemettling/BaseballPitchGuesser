@@ -84,9 +84,23 @@ h3 {
   width: 75%;
   align-self: center;
 }
+
+.playerCard {
+  width: 250px;
+  height: 320px;
+  background-color: darkgrey;
+  border-radius: 3px;
+  padding: 20px 0px;
+  margin: 40px 20px;
+}
+
+.cardHolder {
+  display: flex;
+}
 .pitchGuess {
   padding-top: 3%;
 }
+
 .atBatDetails {
   color: whitesmoke;
   display: flex;

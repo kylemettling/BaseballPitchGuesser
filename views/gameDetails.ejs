@@ -35,12 +35,14 @@
         </span>
       </div>
       <section class='gameDetails'>
-      <div>
+        <div class='cardHolder'>
+      <div class='playerCard'>
         Pitching: <%= box.getCurrentPitcher() %>
       </div>
-      <div>
+      <div class='playerCard'>
         Batting: <%= box.getCurrentBatter() %>
-      </div>
+        <img src=<%= box.currentBatterImg() %>>
+      </div></div>
       <div class="currentInning">Count: <%= box.getCurrentCount() %></div>
       <div class="pitchDetails">
         Pitch Details: <%= box.getPitcherStats() %>
