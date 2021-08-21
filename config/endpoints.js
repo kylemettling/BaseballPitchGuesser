@@ -4,4 +4,5 @@ const API_KEY = process.env.API_KEY;
 module.exports = {
   SCHEDULE_ENDPOINT: `https://api.sportradar.us/mlb/trial/v7/en/games/2021/${getMonth}/${getDay}/schedule.json?api_key=${API_KEY}`,
   PLAYBYPLAY_ENDPOINT: `https://api.sportradar.us/mlb/trial/v7/en/games/gameId/pbp.json?api_key=${API_KEY}`,
+  // PLAYER_IMG: ``
 };

@@ -1,3 +1,7 @@
+const fetch = require("node-fetch");
+const cheerio = require("cheerio");
+const pretty = require("pretty");
+
 class BoxScore {
   constructor(data) {
     this.data = data;
@@ -94,6 +98,40 @@ class BoxScore {
     const { preferred_name, last_name } = this.getCurrentAtBat().hitter;
     return `${preferred_name} ${last_name}`;
   }
+
+  currentBatterImg(batter) {
+    const [first, last] = batter.split(" ");
+    const getImg = async () => {
+      const response = await fetch(`https://www.mlb.com/players/`);
+      const body = await response.text();
+
+      const $ = cheerio.load(body);
+
+      // const players = $(".p-related-links");
+      // const players = $("#players-index").html();
+      const players = $("#players-index");
+      console.log(players);
+      players.each((i, el) => {
+        // console.log($(el).html());
+        const innerList = cheerio.load(el);
+        // console.log(innerList("ul").length);
+        // console.log($(el).find("a").attr("href"));
+      });
+      // .children()
+      // .map(() => $(this).find("a").attr("href").text());
+      // .each((i, el) => {
+      //   return $(el).find("a").attr("href");
+      // });
+      // .each((i, el) => {
+      //   return $(el).find(".p-related-links_link").text();
+      // });
+      // console.log(pretty(players));
+      // console.log(players);
+      return players;
+    };
+    return getImg();
+  }
+
   getAtBatDetails() {
     return Object.keys(this.currentInningInfo.halfs[1].events);
   }

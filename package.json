@@ -10,6 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
     "connect-mongo": "^3.2.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
@@ -21,7 +22,8 @@
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "pretty": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

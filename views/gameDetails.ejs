@@ -41,7 +41,7 @@
       </div>
       <div class='playerCard'>
         Batting: <%= box.getCurrentBatter() %>
-        <img src=<%= box.currentBatterImg() %>>
+        <div> <%= box.currentBatterImg(box.getCurrentBatter()) %>></div>
       </div></div>
       <div class="currentInning">Count: <%= box.getCurrentCount() %></div>
       <div class="pitchDetails">
