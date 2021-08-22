@@ -112,10 +112,7 @@ class BoxScore {
       const players = $("#players-index");
       console.log(players);
       players.each((i, el) => {
-        // console.log($(el).html());
         const innerList = cheerio.load(el);
-        // console.log(innerList("ul").length);
-        // console.log($(el).find("a").attr("href"));
       });
       // .children()
       // .map(() => $(this).find("a").attr("href").text());
