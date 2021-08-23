@@ -114,16 +114,6 @@ class BoxScore {
       players.each((i, el) => {
         const innerList = cheerio.load(el);
       });
-      // .children()
-      // .map(() => $(this).find("a").attr("href").text());
-      // .each((i, el) => {
-      //   return $(el).find("a").attr("href");
-      // });
-      // .each((i, el) => {
-      //   return $(el).find(".p-related-links_link").text();
-      // });
-      // console.log(pretty(players));
-      // console.log(players);
       return players;
     };
     return getImg();
