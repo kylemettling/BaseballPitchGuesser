@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 const pretty = require("pretty");
+const { html } = require("cheerio/lib/api/manipulation");
 
 class BoxScore {
   constructor(data) {
@@ -100,20 +101,38 @@ class BoxScore {
   }
 
   currentBatterImg(batter) {
-    const [first, last] = batter.split(" ");
+    // const [first, last] = batter.split(" ");
+    const [first, last] = ["Adam", "Frazier"];
     const getImg = async () => {
-      const response = await fetch(`https://www.mlb.com/players/`);
+      const response = await fetch(
+        `https://www.espn.com/mlb/players?search=${last.toLowerCase()}`
+      );
+      console.log(
+        `https://www.espn.com/mlb/players?search=${last.toLowerCase()}`
+      );
       const body = await response.text();
 
       const $ = cheerio.load(body);
 
       // const players = $(".p-related-links");
       // const players = $("#players-index").html();
-      const players = $("#players-index");
-      console.log(players);
-      players.each((i, el) => {
-        const innerList = cheerio.load(el);
+      const result = $(".tablehead").find("a");
+
+      const players = {};
+      console.log(result.length);
+      result.each((i, e) => {
+        console.log($(e).html());
       });
+      // .children()
+      // .each((i, e) => {
+      //   players[i] = e;
+      // });
+      // console.log(players.length);
+      // let idk = [];
+      // players.each((i, el) => {
+      //   idk[i] = (this).text();
+      // });
+      // console.log(result);
       return players;
     };
     return getImg();
