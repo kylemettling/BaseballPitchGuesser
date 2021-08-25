@@ -2,6 +2,7 @@ const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 const pretty = require("pretty");
 const { html } = require("cheerio/lib/api/manipulation");
+const { each } = require("cheerio/lib/api/traversing");
 
 class BoxScore {
   constructor(data) {
@@ -100,9 +101,10 @@ class BoxScore {
     return `${preferred_name} ${last_name}`;
   }
 
-  currentBatterImg(batter) {
+  async currentBatterImg(batter) {
     // const [first, last] = batter.split(" ");
     const [first, last] = ["Adam", "Frazier"];
+    // const batterName = 'Adam Frazier'
     const getImg = async () => {
       const response = await fetch(
         `https://www.espn.com/mlb/players?search=${last.toLowerCase()}`
@@ -114,28 +116,46 @@ class BoxScore {
 
       const $ = cheerio.load(body);
 
-      // const players = $(".p-related-links");
-      // const players = $("#players-index").html();
-      const result = $(".tablehead").find("a");
+      const result = $("td > a");
 
       const players = {};
-      console.log(result.length);
+
       result.each((i, e) => {
-        console.log($(e).html());
+        const link = $(e).attr("href");
+        // .split("/")[7];
+        const name = $(e)
+          .text()
+          .replace(",", "")
+          .split(" ")
+          .reverse()
+          .join(" ");
+        players[name] = { playerName: name, playerLink: link };
       });
-      // .children()
-      // .each((i, e) => {
-      //   players[i] = e;
-      // });
-      // console.log(players.length);
-      // let idk = [];
-      // players.each((i, el) => {
-      //   idk[i] = (this).text();
-      // });
-      // console.log(result);
-      return players;
+
+      const playerExists = players[`${first} ${last}`];
+
+      let playerImg;
+
+      if (playerExists) {
+        const imgResponse = await fetch(`${playerExists.playerLink}`);
+        const newCheer = await imgResponse.text();
+        const newPage = cheerio.load(newCheer);
+        // console.log(newPage("img").length);
+        playerImg = newPage(".PlayerHeader__Image img").text();
+        console.log(playerImg);
+        return playerImg;
+        // console.log(
+        //   );
+        // .each((i, e) => {
+        //   console.log(newPage(e).hasClass());
+        // });
+        // console.log(img);
+      }
+      return "playerImg";
+      // console.log(players);
+      // return result;
     };
-    return getImg();
+    return await getImg();
   }
 
   getAtBatDetails() {
