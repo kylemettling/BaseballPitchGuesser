@@ -105,34 +105,57 @@ class BoxScore {
     // const [first, last] = batter.split(" ");
     const [first, last] = ["Adam", "Frazier"];
     // const batterName = 'Adam Frazier'
+
+    let lastFive = "";
+    let firstTwo = "";
+
+    for (let i = 0; i < 5; i++) {
+      if (i < 2) {
+        firstTwo += first[i].toLowerCase();
+      }
+
+      lastFive += last[i].toLowerCase();
+    }
+
+    const nameInUrl = lastFive + firstTwo;
+
+    const firstLetter = lastFive[0].toLowerCase();
+    console.log(lastFive);
+
     const getImg = async () => {
       const response = await fetch(
-        `https://www.espn.com/mlb/players?search=${last.toLowerCase()}`
+        `https://www.baseball-reference.com/players/${firstLetter}/${nameInUrl}01.shtml`
       );
+      // const response = await fetch(
+      //   `https://www.espn.com/mlb/players?search=${last.toLowerCase()}`
+      // );
+      // console.log(
+      //   `https://www.espn.com/mlb/players?search=${last.toLowerCase()}`
+      // );
       console.log(
-        `https://www.espn.com/mlb/players?search=${last.toLowerCase()}`
+        `https://www.baseball-reference.com/players/${firstLetter}/${nameInUrl}01.shtml`
       );
       const body = await response.text();
 
       const $ = cheerio.load(body);
 
-      const result = $("td > a");
+      const result = $("img");
 
       const players = {};
 
-      result.each((i, e) => {
-        const link = $(e).attr("href");
-        // .split("/")[7];
-        const name = $(e)
-          .text()
-          .replace(",", "")
-          .split(" ")
-          .reverse()
-          .join(" ");
-        players[name] = { playerName: name, playerLink: link };
-      });
+      // result.each((i, e) => {
+      //   const link = $(e).attr("href");
+      //   // .split("/")[7];
+      //   const name = $(e)
+      //     .text()
+      //     .replace(",", "")
+      //     .split(" ")
+      //     .reverse()
+      //     .join(" ");
+      //   players[name] = { playerName: name, playerLink: link };
+      // });
 
-      const playerExists = players[`${first} ${last}`];
+      // const playerExists = players[`${first} ${last}`];
 
       let playerImg;
 
@@ -140,20 +163,10 @@ class BoxScore {
         const imgResponse = await fetch(`${playerExists.playerLink}`);
         const newCheer = await imgResponse.text();
         const newPage = cheerio.load(newCheer);
-        // console.log(newPage("img").length);
         playerImg = newPage(".PlayerHeader__Image img").text();
         console.log(playerImg);
         return playerImg;
-        // console.log(
-        //   );
-        // .each((i, e) => {
-        //   console.log(newPage(e).hasClass());
-        // });
-        // console.log(img);
       }
-      return "playerImg";
-      // console.log(players);
-      // return result;
     };
     return await getImg();
   }
