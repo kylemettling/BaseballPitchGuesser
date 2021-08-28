@@ -101,7 +101,7 @@ class BoxScore {
     return `${preferred_name} ${last_name}`;
   }
 
-  async currentBatterImg(batter) {
+  currentBatterImg(batter) {
     // const [first, last] = batter.split(" ");
     const [first, last] = ["Adam", "Frazier"];
     // const batterName = 'Adam Frazier'
@@ -141,34 +141,19 @@ class BoxScore {
 
       const result = $("img");
 
-      const players = {};
+      let players;
 
-      // result.each((i, e) => {
-      //   const link = $(e).attr("href");
-      //   // .split("/")[7];
-      //   const name = $(e)
-      //     .text()
-      //     .replace(",", "")
-      //     .split(" ")
-      //     .reverse()
-      //     .join(" ");
-      //   players[name] = { playerName: name, playerLink: link };
-      // });
+      result.each((i, e) => {
+        if (i === 1) {
+          players = $(e).attr("src").valueOf();
+        }
+        // console.log($(e).attr("src"));
+      });
 
-      // const playerExists = players[`${first} ${last}`];
-
-      let playerImg;
-
-      if (playerExists) {
-        const imgResponse = await fetch(`${playerExists.playerLink}`);
-        const newCheer = await imgResponse.text();
-        const newPage = cheerio.load(newCheer);
-        playerImg = newPage(".PlayerHeader__Image img").text();
-        console.log(playerImg);
-        return playerImg;
-      }
+      console.log(players);
+      return players;
     };
-    return await getImg();
+    return getImg();
   }
 
   getAtBatDetails() {
