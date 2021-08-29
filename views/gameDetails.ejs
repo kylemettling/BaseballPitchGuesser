@@ -41,8 +41,12 @@
       </div>
       <div class='playerCard'>
         Batting: <%= box.getCurrentBatter() %>
-        <div> <%= box.currentBatterImg(async() => await box.getCurrentBatter()) %>></div>
-      </div></div>
+      </div>
+      <div >
+        BATTER: <%= images %>
+      </div>
+      <img class='playerImage' src=<%= images[0] %>>
+      <img class='playerImage' src=<%= images[1] %>>
       <div class="currentInning">Count: <%= box.getCurrentCount() %></div>
       <div class="pitchDetails">
         Pitch Details: <%= box.getPitcherStats() %>

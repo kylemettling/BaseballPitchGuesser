@@ -30,7 +30,7 @@ module.exports = {
         guessResult = await pitchGuess(
           currentPitchNumber,
           currentPitchZone,
-          await guesses,
+          guesses,
           username,
           matchupId
         );
@@ -43,22 +43,50 @@ module.exports = {
     console.log(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId));
     getPitchGuesses();
     try {
-      fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
+      let playerImages;
+      const boxscoreData = fetch(
+        PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId)
+      )
         .then((res) => res.json())
-        .then((body) => {
+        .then(async (body) => {
           const boxscore = new BoxScore(body.game);
           username = req.user.firstName;
-          currentPitchNumber = boxscore.currentPitchNumber;
-          currentPitchZone = boxscore.currentPitchZone;
-
+          currentPitchNumber = await boxscore.currentPitchNumber;
+          currentPitchZone = await boxscore.currentPitchZone;
+          // console.log("AWAITED BOXSCORE", await boxscore.getCurrentBatterImg());
+          playerImages = await boxscore.getPlayerImages();
           return boxscore;
-        })
-        .then(async (boxscore) => {
-          res.render("gameDetails.ejs", {
-            box: boxscore,
-            userGuess: await getResults(username),
-          });
         });
+
+      // .then(async (boxscore) => {
+      // console.log(await boxscoreData).getCurrentBatterImg();
+      // console.log("Hmm", await boxscoreData);
+      const data = await boxscoreData;
+      // console.log("AWAITED BOXSCORE", image);
+      res.render("gameDetails.ejs", {
+        box: data,
+        images: playerImages,
+        userGuess: await getResults(username),
+        // });
+      });
+      // try {
+      //   fetch(PLAYBYPLAY_ENDPOINT.replace("gameId", matchupId))
+      //     .then((res) => res.json())
+      //     .then(async (body) => {
+      //       const boxscore = new BoxScore(body.game);
+      //       username = req.user.firstName;
+      //       currentPitchNumber = await boxscore.currentPitchNumber;
+      //       currentPitchZone = await boxscore.currentPitchZone;
+      //       console.log(await boxscore.getCurrentBatterImg());
+
+      //       return await boxscore;
+      //     })
+      //     .then(async (boxscore) => {
+      //       res.render("gameDetails.ejs", {
+      //         box: await boxscore,
+      //         userGuess: await getResults(username),
+      //       });
+      //     });
     } catch (err) {
       console.log(err);
     }

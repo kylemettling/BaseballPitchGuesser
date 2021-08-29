@@ -19,6 +19,52 @@ class BoxScore {
     this.away.hitsCount = data.scoring.away.hits;
     this.away.errorsCount = data.scoring.away.errors;
     this.away.abbr = data.scoring.away.abbr;
+    this.getPlayerImages = async () => {
+      const players = [
+        { name: this.getCurrentBatter().split(" "), image: "" },
+        { name: this.getCurrentPitcher().split(" "), image: "" },
+      ];
+      // const images = { batter: "", pitcher: "" };
+      // console.log(players);
+      for (let player of players) {
+        console.log(player.name);
+        const [first, last] = [player.name[0], player.name[1]];
+
+        let lastFive = "";
+        let firstTwo = "";
+
+        for (let i = 0; i < 5; i++) {
+          if (i < 2) {
+            firstTwo += first[i].toLowerCase();
+          }
+
+          lastFive += last[i].toLowerCase();
+        }
+
+        const nameInUrl = lastFive + firstTwo;
+
+        const firstLetter = lastFive[0].toLowerCase();
+        console.log(lastFive);
+        const response = await fetch(
+          `https://www.baseball-reference.com/players/${firstLetter}/${nameInUrl}01.shtml`
+        );
+
+        console.log(
+          `https://www.baseball-reference.com/players/${firstLetter}/${nameInUrl}01.shtml`
+        );
+        const body = await response.text();
+
+        const $ = cheerio.load(body);
+
+        player.image += $("img")[1].attribs.src;
+      }
+      const images = [];
+      for (const player of players) {
+        images.push(player.image);
+      }
+      console.log(images);
+      return images;
+    };
     this.homeBox = [
       this.home.abbr,
       this.home.runsCount,
@@ -99,61 +145,6 @@ class BoxScore {
   getCurrentBatter() {
     const { preferred_name, last_name } = this.getCurrentAtBat().hitter;
     return `${preferred_name} ${last_name}`;
-  }
-
-  currentBatterImg(batter) {
-    // const [first, last] = batter.split(" ");
-    const [first, last] = ["Adam", "Frazier"];
-    // const batterName = 'Adam Frazier'
-
-    let lastFive = "";
-    let firstTwo = "";
-
-    for (let i = 0; i < 5; i++) {
-      if (i < 2) {
-        firstTwo += first[i].toLowerCase();
-      }
-
-      lastFive += last[i].toLowerCase();
-    }
-
-    const nameInUrl = lastFive + firstTwo;
-
-    const firstLetter = lastFive[0].toLowerCase();
-    console.log(lastFive);
-
-    const getImg = async () => {
-      const response = await fetch(
-        `https://www.baseball-reference.com/players/${firstLetter}/${nameInUrl}01.shtml`
-      );
-      // const response = await fetch(
-      //   `https://www.espn.com/mlb/players?search=${last.toLowerCase()}`
-      // );
-      // console.log(
-      //   `https://www.espn.com/mlb/players?search=${last.toLowerCase()}`
-      // );
-      console.log(
-        `https://www.baseball-reference.com/players/${firstLetter}/${nameInUrl}01.shtml`
-      );
-      const body = await response.text();
-
-      const $ = cheerio.load(body);
-
-      const result = $("img");
-
-      let players;
-
-      result.each((i, e) => {
-        if (i === 1) {
-          players = $(e).attr("src").valueOf();
-        }
-        // console.log($(e).attr("src"));
-      });
-
-      console.log(players);
-      return players;
-    };
-    return getImg();
   }
 
   getAtBatDetails() {
