@@ -86,16 +86,26 @@ h3 {
 }
 
 .playerCard {
-  width: 250px;
+  width: 320px;
   height: 320px;
+  color: black;
   background-color: darkgrey;
   border-radius: 3px;
   padding: 20px 0px;
   margin: 40px 20px;
 }
 
+.playerImage {
+  /* width: 479px; */
+  height: 250px;
+  border-radius: 5%;
+}
+
 .cardHolder {
   display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100vw;
 }
 .pitchGuess {
   padding-top: 3%;

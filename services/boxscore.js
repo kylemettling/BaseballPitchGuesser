@@ -21,18 +21,15 @@ class BoxScore {
     this.away.abbr = data.scoring.away.abbr;
     this.getPlayerImages = async () => {
       const players = [
-        { name: this.getCurrentBatter().split(" "), image: "" },
-        { name: this.getCurrentPitcher().split(" "), image: "" },
+        { name: this.getCurrentBatter().split(" ") },
+        { name: this.getCurrentPitcher().split(" ") },
       ];
-      // const images = { batter: "", pitcher: "" };
-      // console.log(players);
-      for (let player of players) {
-        console.log(player.name);
-        const [first, last] = [player.name[0], player.name[1]];
-
+      function encodeName(name) {
+        console.log("INSIDE", name);
+        const [first, last] = [name[0], name[1]];
+        console.log(first, last);
         let lastFive = "";
         let firstTwo = "";
-
         for (let i = 0; i < 5; i++) {
           if (i < 2) {
             firstTwo += first[i].toLowerCase();
@@ -41,28 +38,26 @@ class BoxScore {
           lastFive += last[i].toLowerCase();
         }
 
-        const nameInUrl = lastFive + firstTwo;
-
-        const firstLetter = lastFive[0].toLowerCase();
-        console.log(lastFive);
+        return lastFive + firstTwo;
+      }
+      const images = [];
+      for (let player of players) {
+        const decodedName = encodeName(player.name);
+        const firstLetter = decodedName[0].toLowerCase();
+        console.log("DECODE", decodedName);
         const response = await fetch(
-          `https://www.baseball-reference.com/players/${firstLetter}/${nameInUrl}01.shtml`
+          `https://www.baseball-reference.com/players/${firstLetter}/${decodedName}01.shtml`
         );
 
         console.log(
-          `https://www.baseball-reference.com/players/${firstLetter}/${nameInUrl}01.shtml`
+          `https://www.baseball-reference.com/players/${firstLetter}/${decodedName}01.shtml`
         );
         const body = await response.text();
 
         const $ = cheerio.load(body);
 
-        player.image += $("img")[1].attribs.src;
+        images.push($("img")[1].attribs.src);
       }
-      const images = [];
-      for (const player of players) {
-        images.push(player.image);
-      }
-      console.log(images);
       return images;
     };
     this.homeBox = [

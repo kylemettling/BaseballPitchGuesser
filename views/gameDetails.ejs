@@ -37,21 +37,19 @@
       <section class='gameDetails'>
         <div class='cardHolder'>
       <div class='playerCard'>
-        Pitching: <%= box.getCurrentPitcher() %>
+        <span>Pitching: <%= box.getCurrentPitcher() %></span>
+        <img class='playerImage' src=<%= images[1] %>>
       </div>
       <div class='playerCard'>
-        Batting: <%= box.getCurrentBatter() %>
+        <span>Batting: <%= box.getCurrentBatter() %></span>
+        <img class='playerImage' src=<%= images[0] %>>
       </div>
-      <div >
-        BATTER: <%= images %>
-      </div>
-      <img class='playerImage' src=<%= images[0] %>>
-      <img class='playerImage' src=<%= images[1] %>>
-      <div class="currentInning">Count: <%= box.getCurrentCount() %></div>
-      <div class="pitchDetails">
-        Pitch Details: <%= box.getPitcherStats() %>
-      </div>
+
     </section>
+    <div class="currentInning">Count: <%= box.getCurrentCount() %></div>
+    <div class="pitchDetails">
+      Pitch Details: <%= box.getPitcherStats() %>
+    </div>
       </div>
       
       <section class="pitchGuessCon">
