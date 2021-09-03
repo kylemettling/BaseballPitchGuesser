@@ -75,10 +75,11 @@ h3 {
 }
 
 .playerCard {
-  width: 320px;
-  height: 320px;
+  width: 380px;
+  height: 410px;
   color: black;
   background-color: darkgrey;
+  border: rgb(18, 114, 114) solid 11px;
   border-radius: 3px;
   padding: 20px 0px;
   margin: 40px 20px;

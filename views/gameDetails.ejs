@@ -12,8 +12,9 @@
   </head>
 
   <body>
-    <h2><%= `${box.away.name} vs. ${box.home.name}` %></h2>
-    <h3><%= `${box.getVenueDetails()}` %></h3>
+    <header>
+    <h1><%= `${box.away.name} vs. ${box.home.name}` %></h1>
+    <h2><%= `${box.getVenueDetails()}` %></h2></header>
     <div class="mainCon">
       <div class="boxCon" data-gameId="<%= box.gameId %>">
         <div class='inningDetail'>
@@ -37,11 +38,11 @@
       <section class='gameDetails'>
         <div class='cardHolder'>
       <div class='playerCard'>
-        <span>Pitching: <%= box.getCurrentPitcher() %></span>
+        <h3>Pitching: <%= box.getCurrentPitcher() %></h3>
         <img class='playerImage' src=<%= images[1] %>>
       </div>
       <div class='playerCard'>
-        <span>Batting: <%= box.getCurrentBatter() %></span>
+        <h3>Batting: <%= box.getCurrentBatter() %></h3>
         <img class='playerImage' src=<%= images[0] %>>
       </div>
 
