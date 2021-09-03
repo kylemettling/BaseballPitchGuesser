@@ -26,7 +26,7 @@ Taking on the challenge to build an app using play-by-play data and _gamifying_ 
 
 ## TODOs:
 
-- Requests for player, team and ballpark images
+- Requests for player (done!), team and ballpark images
 - Requests for current player stats (match ups)
 - Requests for current pitcher's pitch repertoire
 - Reworking of UI, card approach
