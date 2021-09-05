@@ -29,8 +29,9 @@ Taking on the challenge to build an app using play-by-play data and _gamifying_ 
 - Requests for player (done!), team and ballpark images
 - Requests for current player stats (match ups)
 - Requests for current pitcher's pitch repertoire
-- Reworking of UI, card approach
+- Reworking of UI, card approach (in progress)
 - OVERHAUL to React/Node.js
+- Progress API depth for in progress
 
 ## Keep Exploring:
 
