@@ -31,7 +31,8 @@ Taking on the challenge to build an app using play-by-play data and _gamifying_ 
 - Requests for current pitcher's pitch repertoire
 - Reworking of UI, card approach (in progress)
 - OVERHAUL to React/Node.js
-- Progress API depth for in progress
+- Progress API depth for in progress sessions -> fewer calls to limited realtime API
+- Dynamic player card colors (by team)
 
 ## Keep Exploring:
 
