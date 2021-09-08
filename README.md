@@ -39,7 +39,7 @@ Taking on the challenge to build an app using play-by-play data and _gamifying_ 
 
 Take a look at these other examples that I have in my portfolio:
 
-**Weather App:** https://github.com/kylemettling/weather-app
+**Weather App (React):** https://github.com/kylemettling/weather-app
 
 **"NunGram":** https://github.com/kylemettling/theNunGram
 
