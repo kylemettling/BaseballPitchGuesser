@@ -34,6 +34,7 @@ Taking on the challenge to build an app using play-by-play data and _gamifying_ 
 - Progress API depth for in progress sessions -> fewer calls to limited realtime API
 - Dynamic player card colors (by team)
 - Handle unusual pitch type outcomes
+- Handle better pitch-by-pitch controller with models
 
 ## Keep Exploring:
 
