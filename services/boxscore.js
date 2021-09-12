@@ -34,8 +34,8 @@ class BoxScore {
           if (i < 2) {
             firstTwo += first[i].toLowerCase();
           }
-
-          lastFive += last[i].toLowerCase();
+          console.log(last[i].toLowerCase(), last[i]);
+          lastFive.concat(last[i].toLowerCase() ? last[i].toLowerCase() : "");
         }
 
         return lastFive + firstTwo;

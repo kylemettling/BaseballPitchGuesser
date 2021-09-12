@@ -26,6 +26,9 @@ h3 {
   display: flex;
   width: 100vw;
   text-align: center;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
   justify-content: center;
   padding-top: 2%;
   padding-left: 4%;
@@ -43,6 +46,11 @@ h3 {
   align-content: center;
   text-align: center;
 }
+
+.boxLegend {
+  justify-content: center;
+}
+
 .boxLegend,
 .homeBox,
 .awayBox {
